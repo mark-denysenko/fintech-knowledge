@@ -1,8 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Embedded Financing Guide</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
@@ -208,8 +203,7 @@
     .masthead-inner { padding: 40px 18px 32px; }
   }
 </style>
-</head>
-<body>
+
 <header class="masthead">
   <div class="masthead-inner">
     <p class="kicker">Onboarding &middot; Multi-lender POS &amp; embedded financing</p>
@@ -303,7 +297,6 @@
 
   <h3>The lender waterfall</h3>
   <p>A single application cascades through lenders ordered roughly by credit tier: <strong>prime</strong> (bank-issued PLCC, DLOC, prime installment) → <strong>near-prime</strong> installment lenders → <strong>second-look / subprime</strong> specialists → <strong>lease-to-own</strong> as the final rung. "<strong>First look</strong>" is the lender who sees the application first; a "<strong>second look</strong>" lender only receives applications an upstream lender declined. Every extra rung converts sales that would otherwise walk away — a well-built waterfall approves the large majority of applicants, and that conversion lift is the commercial core of a multi-lender platform versus a single-lender program.</p>
-
   <p><strong>Step zero — the returning-customer lookup.</strong> Before submitting a new application, the platform checks the consumer's PII for an <em>existing account with available credit</em>. If one is found (often confirmed via a one-time passcode, §03), the consumer can pay with it immediately — no new application, no new credit pull. Only when no usable account is found does a fresh application enter the waterfall.</p>
   <p>Adjacent single-lender BNPL names you'll hear in the industry: Affirm, Klarna, Afterpay, Sezzle, Splitit. They compete for the same checkout button — the multi-lender model's answer is breadth of the waterfall rather than one balance sheet.</p>
 
@@ -1139,5 +1132,3 @@
     } catch (err) { /* nav highlight is a convenience only */ }
   })();
 </script>
-</body>
-</html>
