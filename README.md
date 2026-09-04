@@ -1,5 +1,10 @@
 # Embedded Financing Guide
 
+**Read it online:**
+
+- GitHub Pages — https://mark-denysenko.github.io/fintech-knowledge/
+- Cloudflare Workers (mirror) — https://fintech-expert.mark-denyssenko.workers.dev/
+
 Onboarding guide to multi-lender point-of-sale (POS) and embedded financing — the terms,
 flows, diagrams, and A–Z glossary
 
