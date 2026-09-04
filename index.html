@@ -1,0 +1,1142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embedded Financing Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #F5F6F3;
+    --surface: #FFFFFF;
+    --ink: #1C2733;
+    --muted: #5A6876;
+    --line: #DCE1DA;
+    --line-strong: #B8C0B6;
+    --accent: #0E7A68;
+    --accent-soft: #E3EFEA;
+    --warn: #A85A0F;
+    --warn-soft: #F5EBDD;
+    --code-bg: #ECEFEA;
+    --shadow: 0 1px 2px rgba(28,39,51,.06), 0 4px 14px rgba(28,39,51,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10161C;
+      --surface: #161E26;
+      --ink: #E4EAE5;
+      --muted: #94A2AB;
+      --line: #29333C;
+      --line-strong: #3D4A54;
+      --accent: #3BBFA3;
+      --accent-soft: #16302C;
+      --warn: #DFA155;
+      --warn-soft: #2E2416;
+      --code-bg: #1C252E;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10161C;
+    --surface: #161E26;
+    --ink: #E4EAE5;
+    --muted: #94A2AB;
+    --line: #29333C;
+    --line-strong: #3D4A54;
+    --accent: #3BBFA3;
+    --accent-soft: #16302C;
+    --warn: #DFA155;
+    --warn-soft: #2E2416;
+    --code-bg: #1C252E;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.25);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.68;
+  }
+  h1, h2, h3, h4 {
+    font-family: "Bricolage Grotesque", "Avenir Next", "Segoe UI", Arial, sans-serif;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .mono, code, .chip, .secnum, th, figcaption, .navnum {
+    font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  }
+  code { background: var(--code-bg); padding: .1em .4em; border-radius: 4px; font-size: .82em; }
+  pre { background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-size: 12.5px; line-height: 1.55; max-width: 70ch; }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .masthead-inner {
+    max-width: 1180px; margin: 0 auto; padding: 56px 28px 44px;
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 14px;
+  }
+  .masthead h1 { font-size: clamp(34px, 5.5vw, 56px); font-weight: 700; letter-spacing: -.015em; }
+  .lede {
+    max-width: 62ch; margin: 18px 0 0; font-size: 19px; color: var(--muted);
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+  .scope-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .scope-row .chip {
+    font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase;
+    border: 1px solid var(--line-strong); border-radius: 999px;
+    padding: 4px 12px; color: var(--muted); background: var(--bg);
+  }
+
+  /* ---------- layout ---------- */
+  .wrap {
+    max-width: 1180px; margin: 0 auto; padding: 40px 28px 90px;
+    display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 56px;
+    align-items: start;
+  }
+  nav.toc { position: sticky; top: 24px; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  nav.toc a {
+    display: flex; gap: 10px; align-items: baseline;
+    padding: 7px 10px; border-radius: 7px;
+    color: var(--muted); text-decoration: none;
+    font-family: "Bricolage Grotesque", sans-serif; font-size: 14.5px; font-weight: 500;
+  }
+  nav.toc a:hover { color: var(--ink); background: var(--code-bg); }
+  nav.toc a.active { color: var(--accent); background: var(--accent-soft); }
+  .navnum { font-size: 11px; color: var(--line-strong); min-width: 18px; }
+  nav.toc a.active .navnum { color: var(--accent); }
+  main { min-width: 0; }
+
+  /* ---------- sections ---------- */
+  section { padding: 8px 0 26px; }
+  section + section { border-top: 1px solid var(--line); margin-top: 26px; padding-top: 44px; }
+  .sechead { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
+  .secnum { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: .08em; }
+  section h2 { font-size: clamp(24px, 3vw, 31px); font-weight: 650; }
+  .secsub { color: var(--muted); font-size: 16.5px; margin: 6px 0 0; max-width: 66ch; }
+  section h3 { font-size: 20px; font-weight: 650; margin: 34px 0 6px; }
+  section h4 { font-size: 16.5px; font-weight: 600; margin: 24px 0 4px; }
+  p { margin: 12px 0; max-width: 68ch; }
+  ul, ol { max-width: 66ch; padding-left: 1.3em; margin: 12px 0; }
+  li { margin: 6px 0; }
+  strong { font-weight: 600; }
+
+  /* term entry */
+  .term { margin: 30px 0 0; padding: 20px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+  .term-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .term-head h3, .term-head h4 { margin: 0; font-size: 19px; font-weight: 650; }
+  .chip {
+    font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; font-weight: 500;
+  }
+  .chip.cat { background: var(--accent-soft); color: var(--accent); }
+  .chip.warncat { background: var(--warn-soft); color: var(--warn); }
+  .term p { margin: 8px 0; }
+  .term p:last-child { margin-bottom: 0; }
+
+  /* callouts */
+  .callout { margin: 18px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); max-width: 70ch; }
+  .callout .label {
+    display: inline-block; font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px; letter-spacing: .11em; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .callout.eng .label { color: var(--accent); }
+  .callout.trap { border-color: var(--warn); background: var(--warn-soft); }
+  .callout.trap .label { color: var(--warn); }
+  .callout.law .label { color: var(--muted); }
+  .callout p { margin: 4px 0; font-size: 15.5px; }
+
+  /* tables */
+  .tablewrap { overflow-x: auto; margin: 18px 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  th {
+    text-align: left; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; padding: 11px 14px; border-bottom: 1px solid var(--line-strong);
+    background: var(--code-bg); white-space: nowrap;
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 600; font-family: "Bricolage Grotesque", sans-serif; font-size: 14px; white-space: nowrap; }
+
+  /* figures */
+  figure { margin: 26px 0; padding: 20px 20px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+  figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; color: var(--ink); }
+  figcaption { font-size: 12.5px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+  svg .db { fill: var(--bg); stroke: var(--line-strong); stroke-width: 1.3; }
+  svg .dbs { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.3; }
+  svg .dba { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  svg .dbw { fill: var(--warn-soft); stroke: var(--warn); stroke-width: 1.4; }
+  svg .ln { stroke: var(--muted); stroke-width: 1.3; fill: none; }
+  svg .lna { stroke: var(--accent); stroke-width: 1.7; fill: none; }
+  svg .lnw { stroke: var(--warn); stroke-width: 1.4; fill: none; }
+  svg .lnd { stroke: var(--muted); stroke-width: 1.3; fill: none; stroke-dasharray: 4 4; }
+  svg text { font-family: "IBM Plex Mono", monospace; font-size: 12px; fill: var(--ink); }
+  svg .tt { font-family: "Bricolage Grotesque", sans-serif; font-size: 13px; font-weight: 600; }
+  svg .tm { fill: var(--muted); font-size: 10.5px; }
+  svg .ta { fill: var(--accent); }
+  svg .tw { fill: var(--warn); }
+  svg .ah { fill: var(--muted); } svg .aha { fill: var(--accent); } svg .ahw { fill: var(--warn); }
+
+  /* glossary */
+  .glossary { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 10px 22px; margin-top: 20px; }
+  .glossary dl { margin: 0; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; }
+  .glossary dt { font-family: "Bricolage Grotesque", sans-serif; font-weight: 650; font-size: 15px; }
+  .glossary dd { margin: 3px 0 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+  footer.pagefoot { border-top: 1px solid var(--line); margin-top: 50px; padding-top: 22px; font-size: 13.5px; color: var(--muted); max-width: 70ch; }
+
+  @media (max-width: 920px) {
+    .wrap { grid-template-columns: 1fr; gap: 24px; padding: 28px 18px 70px; }
+    nav.toc { position: static; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+    nav.toc a { padding: 5px 9px; font-size: 13px; }
+    .masthead-inner { padding: 40px 18px 32px; }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">Onboarding &middot; Multi-lender POS &amp; embedded financing</p>
+    <h1>Embedded Financing Guide</h1>
+    <p class="lede">The working vocabulary of a <strong>multi-lender point-of-sale financing platform</strong> — the terms, flows, and money mechanics you'll hear in your first month. Not a banking course: just the concepts our platform actually runs on, from prequalification to reconciliation.</p>
+    <div class="scope-row">
+      <span class="chip">For all roles</span>
+      <span class="chip">US consumer lending</span>
+      <span class="chip">Reading time ~50 min</span>
+      <span class="chip">Follows the loan lifecycle in order</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc" aria-label="Guide sections">
+  <ol>
+    <li><a href="#big-picture"><span class="navnum">01</span>The big picture</a></li>
+    <li><a href="#products"><span class="navnum">02</span>Products</a></li>
+    <li><a href="#application"><span class="navnum">03</span>Application &amp; credit</a></li>
+    <li><a href="#offers"><span class="navnum">04</span>Offers &amp; rate plans</a></li>
+    <li><a href="#checkout"><span class="navnum">05</span>Checkout &amp; funding</a></li>
+    <li><a href="#postsale"><span class="navnum">06</span>Postsale lifecycle</a></li>
+    <li><a href="#reconciliation"><span class="navnum">07</span>Reconciliation</a></li>
+    <li><a href="#compliance"><span class="navnum">08</span>Compliance map</a></li>
+    <li><a href="#walkthrough"><span class="navnum">09</span>End-to-end story</a></li>
+    <li><a href="#home-improvement"><span class="navnum">10</span>Home improvement</a></li>
+    <li><a href="#agentic-commerce"><span class="navnum">11</span>Agentic commerce</a></li>
+    <li><a href="#cheatsheets"><span class="navnum">12</span>Cheat sheets</a></li>
+    <li><a href="#glossary"><span class="navnum">13</span>Glossary A–Z</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="big-picture">
+  <div class="sechead"><span class="secnum">01</span><h2>The big picture</h2></div>
+  <p class="secsub">What point-of-sale financing is, who the four players are, and why a multi-lender waterfall is the whole point.</p>
+
+  <p><strong>Point-of-sale (POS) financing</strong> is credit offered at the moment of purchase, inside the merchant's own experience — online checkout, an in-store terminal, or a technician's tablet at a customer's kitchen table. <strong>Embedded financing</strong> is the broader idea: regulated lending products delivered inside a non-bank experience instead of at a bank.</p>
+
+  <h3>The four players</h3>
+  <ul>
+    <li><strong>Consumer</strong> — the <em>applicant</em> during decisioning; the <em>borrower / account holder</em> once credit exists.</li>
+    <li><strong>Merchant</strong> — the business selling the goods or services: a big-box home-improvement retailer like The Home Depot, or a home-services franchise network like Authority Brands, whose technicians offer financing on a $6,000 HVAC replacement in the customer's home.</li>
+    <li><strong>Lender</strong> — the regulated entity that extends credit, owns the credit decision, and is the legal <em>creditor</em>. In our ecosystem that spans bank issuers (Wells Fargo, Citi), home-improvement installment lenders (GreenSky, Goodleap, Foundation Finance), and second-look specialists (Fortiva).</li>
+    <li><strong>Platform</strong> — the orchestration layer connecting <em>one</em> merchant integration to <em>many</em> lenders. It routes applications, normalizes offers, runs the checkout and postsale transaction lifecycle, and reconciles the money. The platform is generally <em>not</em> the lender.</li>
+  </ul>
+
+  <figure>
+    <svg viewBox="0 0 880 340" role="img" aria-label="Ecosystem map: the consumer applies through the merchant, the merchant has one integration to the platform, the platform routes applications to a stack of lenders and receives offers back, and a virtual-card processor pays the merchant over existing card rails.">
+      <defs>
+        <marker id="e-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+        <marker id="e-aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="aha"/></marker>
+      </defs>
+      <rect x="20" y="130" width="118" height="56" rx="9" class="dbs"/>
+      <text x="79" y="163" text-anchor="middle" class="tt">Consumer</text>
+      <rect x="212" y="130" width="136" height="56" rx="9" class="dbs"/>
+      <text x="280" y="163" text-anchor="middle" class="tt">Merchant</text>
+      <rect x="424" y="118" width="150" height="80" rx="9" class="dba"/>
+      <text x="499" y="153" text-anchor="middle" class="tt ta">Platform</text>
+      <text x="499" y="172" text-anchor="middle" class="tm">orchestrator</text>
+      <rect x="668" y="24" width="192" height="46" rx="9" class="dbs"/>
+      <text x="764" y="52" text-anchor="middle" class="tt">Prime bank</text>
+      <rect x="668" y="96" width="192" height="46" rx="9" class="dbs"/>
+      <text x="764" y="124" text-anchor="middle" class="tt">Installment lender</text>
+      <rect x="668" y="168" width="192" height="46" rx="9" class="dbs"/>
+      <text x="764" y="196" text-anchor="middle" class="tt">Second-look lender</text>
+      <rect x="668" y="240" width="192" height="46" rx="9" class="dbs"/>
+      <text x="764" y="268" text-anchor="middle" class="tt">Lease-to-own</text>
+      <line x1="138" y1="158" x2="206" y2="158" class="ln" marker-end="url(#e-ah)"/>
+      <text x="172" y="147" text-anchor="middle" class="tm">applies</text>
+      <line x1="348" y1="158" x2="418" y2="158" class="ln" marker-end="url(#e-ah)"/>
+      <text x="383" y="147" text-anchor="middle" class="tm">one API</text>
+      <line x1="574" y1="132" x2="662" y2="52" class="ln" marker-end="url(#e-ah)"/>
+      <line x1="574" y1="148" x2="662" y2="120" class="ln" marker-end="url(#e-ah)"/>
+      <line x1="574" y1="168" x2="662" y2="190" class="ln" marker-end="url(#e-ah)"/>
+      <line x1="574" y1="184" x2="662" y2="260" class="ln" marker-end="url(#e-ah)"/>
+      <text x="618" y="106" text-anchor="middle" class="tm">routes</text>
+      <line x1="662" y1="152" x2="580" y2="158" class="lnd" marker-end="url(#e-ah)"/>
+      <text x="640" y="166" text-anchor="end" class="tm">offers back</text>
+      <rect x="414" y="262" width="170" height="50" rx="9" class="dbs"/>
+      <text x="499" y="283" text-anchor="middle" class="tt">VCC processor</text>
+      <text x="499" y="300" text-anchor="middle" class="tm">e.g. Marqeta</text>
+      <line x1="499" y1="198" x2="499" y2="256" class="ln" marker-end="url(#e-ah)"/>
+      <text x="510" y="232" class="tm">issues virtual card</text>
+      <path d="M 414 287 C 300 287 285 240 282 192" class="lna" marker-end="url(#e-aha)"/>
+      <text x="300" y="262" text-anchor="middle" class="ta tm" style="fill: var(--accent)">pays over card rails</text>
+    </svg>
+    <figcaption>The multi-lender model: the merchant integrates once with the platform; lenders plug into the platform; a virtual-card processor lets any lender pay any merchant over the card rails the merchant already has.</figcaption>
+  </figure>
+
+  <h3>The lender waterfall</h3>
+  <p>A single application cascades through lenders ordered roughly by credit tier: <strong>prime</strong> (bank-issued PLCC, DLOC, prime installment) → <strong>near-prime</strong> installment lenders → <strong>second-look / subprime</strong> specialists → <strong>lease-to-own</strong> as the final rung. "<strong>First look</strong>" is the lender who sees the application first; a "<strong>second look</strong>" lender only receives applications an upstream lender declined. Every extra rung converts sales that would otherwise walk away — a well-built waterfall approves the large majority of applicants (ChargeAfter cites up to ~85%), and that conversion lift is the commercial core of a multi-lender platform versus a single-lender program.</p>
+  <p><strong>Step zero — the returning-customer lookup.</strong> Before submitting a new application, the platform checks the consumer's PII for an <em>existing account with available credit</em>. If one is found (often confirmed via a one-time passcode, §03), the consumer can pay with it immediately — no new application, no new credit pull. Only when no usable account is found does a fresh application enter the waterfall.</p>
+  <p>Adjacent single-lender BNPL names you'll hear in the industry: Affirm, Klarna, Afterpay, Sezzle, Splitit. They compete for the same checkout button — the multi-lender model's answer is breadth of the waterfall rather than one balance sheet.</p>
+
+  <figure>
+    <svg viewBox="0 0 880 300" role="img" aria-label="Lender waterfall: an application flows from prime to near-prime to second-look to lease-to-own, with declines passing to the next tier and every approval producing an offer presented to the consumer.">
+      <defs>
+        <marker id="w-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+        <marker id="w-aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="aha"/></marker>
+      </defs>
+      <text x="20" y="30" class="tm">application enters →</text>
+      <rect x="20" y="46" width="180" height="60" rx="9" class="dbs"/>
+      <text x="110" y="72" text-anchor="middle" class="tt">Prime</text>
+      <text x="110" y="90" text-anchor="middle" class="tm">bank PLCC · DLOC</text>
+      <rect x="246" y="46" width="180" height="60" rx="9" class="dbs"/>
+      <text x="336" y="72" text-anchor="middle" class="tt">Near-prime</text>
+      <text x="336" y="90" text-anchor="middle" class="tm">installment</text>
+      <rect x="472" y="46" width="180" height="60" rx="9" class="dbs"/>
+      <text x="562" y="72" text-anchor="middle" class="tt">Second look</text>
+      <text x="562" y="90" text-anchor="middle" class="tm">subprime</text>
+      <rect x="698" y="46" width="162" height="60" rx="9" class="dbs"/>
+      <text x="779" y="72" text-anchor="middle" class="tt">Lease-to-own</text>
+      <text x="779" y="90" text-anchor="middle" class="tm">not credit</text>
+      <line x1="200" y1="76" x2="240" y2="76" class="ln" marker-end="url(#w-ah)"/>
+      <text x="220" y="66" text-anchor="middle" class="tm">decline</text>
+      <line x1="426" y1="76" x2="466" y2="76" class="ln" marker-end="url(#w-ah)"/>
+      <text x="446" y="66" text-anchor="middle" class="tm">decline</text>
+      <line x1="652" y1="76" x2="692" y2="76" class="ln" marker-end="url(#w-ah)"/>
+      <text x="672" y="66" text-anchor="middle" class="tm">decline</text>
+      <line x1="110" y1="106" x2="110" y2="196" class="lna" marker-end="url(#w-aha)"/>
+      <line x1="336" y1="106" x2="336" y2="196" class="lna" marker-end="url(#w-aha)"/>
+      <line x1="562" y1="106" x2="562" y2="196" class="lna" marker-end="url(#w-aha)"/>
+      <line x1="779" y1="106" x2="779" y2="196" class="lna" marker-end="url(#w-aha)"/>
+      <text x="124" y="156" class="tm" style="fill: var(--accent)">approve</text>
+      <rect x="20" y="202" width="840" height="54" rx="9" class="dba"/>
+      <text x="440" y="234" text-anchor="middle" class="tt ta">Offers presented to the consumer — compare &amp; accept one</text>
+      <text x="20" y="288" class="tm">soft-pull prequal can sweep every tier before any hard inquiry (§03)</text>
+    </svg>
+    <figcaption>The waterfall. Depending on program setup, tiers are tried in sequence or in parallel; either way the consumer sees normalized offers and accepts exactly one.</figcaption>
+  </figure>
+
+  <h3>Why merchants pay for this</h3>
+  <p>Financing lifts approval rates, checkout conversion, and average order value (<strong>AOV</strong>). Merchants fund promotional plans through a <strong>merchant fee / merchant discount rate (MDR)</strong> or a <strong>subsidy ("buy-down")</strong> — for example, paying the lender a few percent of the ticket so the consumer can get "0% for 12 months." That fee shows up again in §07 when we reconcile it.</p>
+</section>
+
+<section id="products">
+  <div class="sechead"><span class="secnum">02</span><h2>Products</h2></div>
+  <p class="secsub">Two axes classify almost everything: open-end (revolving) vs closed-end (installment), and secured vs unsecured.</p>
+
+  <div class="term">
+    <div class="term-head"><h3>Installment loan</h3><span class="chip cat">closed-end · unsecured</span></div>
+    <p>A fixed amount, fixed term, and (usually) fixed monthly payments; one loan per purchase or project. Home-improvement "project loans" — the GreenSky / Goodleap / Foundation Finance space — are typically unsecured installment loans sold through contractors and dealers.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Revolving line of credit (RLOC)</h3><span class="chip cat">open-end</span></div>
+    <p>A credit limit the consumer can draw against, repay, and re-draw — internally often called an <strong>RLOC</strong>. Balances revolve; minimum payments apply; APR accrues on carried balances; available credit replenishes as payments post. PLCCs and DLOCs are both revolving products.</p>
+    <p>Lender RLOCs are classified by how the consumer is billed for a purchase: <strong>Flexible Payments</strong> (pay at your own pace, subject to minimum monthly payments) vs <strong>Equal Payments</strong> (the purchase is split into equal monthly payments). Neither carries prepayment penalties or minimum purchase requirements. Fees and late-payment terms live in the lender's <strong>Summary of Terms / cardholder agreement disclosures</strong>, shown before the consumer accepts.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>PLCC — Private Label Credit Card</h3><span class="chip cat">open-end · card</span></div>
+    <p>A store-branded revolving card usable only at that merchant ("closed-loop"), issued and owned by a partner bank (Citi Retail Services, Synchrony, Wells Fargo, TD, and similar). The merchant gets branding, loyalty, and promo financing; the bank owns the credit relationship, the receivables, and the compliance burden. Contrast with a <strong>co-branded card</strong>, which carries a network mark (Visa/Mastercard) and works anywhere.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>DLOC — Digital Line of Credit</h3><span class="chip cat">open-end · digital</span></div>
+    <p>Think "PLCC without the plastic": a revolving account issued <em>digitally at checkout</em> — instant account number, no physical card, used card-not-present inside the merchant or platform experience. Banks use DLOCs to compete in embedded financing without card fulfillment. From the platform's perspective a DLOC behaves like any revolving account you transact against through the postsale lifecycle (§06).</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>BNPL / pay-in-4</h3><span class="chip cat">short-term split pay</span></div>
+    <p>Four payments over roughly six weeks, usually interest-free to the consumer and funded by merchant fees. A different animal from long-term installment financing; historically lightly regulated, now converging toward credit-style (Reg Z-like) treatment.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Lease-to-own (LTO)</h3><span class="chip warncat">not credit</span></div>
+    <p>The provider <em>buys the goods and leases them</em> to the consumer with an option to own. There is no APR — instead a disclosed "cost of leasing," which can be high. LTO serves no-credit and deep-subprime consumers, is regulated as a lease rather than a loan, and sits on the final rung of the waterfall. Terms are typically fixed at 3, 6, or 12 months; after all lease payments, the consumer automatically owns the items. At any point they have three options: keep leasing, <strong>buy out</strong> the items (part of every lease payment counts toward the buyout), or return them with no further obligation beyond past-due amounts.</p>
+    <p><strong>Early purchase option:</strong> during roughly the first 90 days, the consumer can buy the items out for a small percentage above cash price (~5–10%, varies by lender; California residents pay just the cash price). <strong>Initial payment:</strong> collected at checkout on a credit/debit card — most lenders treat the flat amount as a processing fee that does <em>not</em> count toward the buyout. <strong>Periodic payments</strong> are scheduled from the consumer's paycheck frequency and dates, billed to the card on file.</p>
+    <p><strong>Non-leasable items:</strong> LTO only fits leaseable goods. Typical exclusions: non-durable/disposable goods, items under ~$20, product warranties and protection plans, assembly services, non-tangible goods, and recycling/government fees. A cart containing them may be declined by some lenders — others approve but charge the non-leasable portion upfront (added to the initial payment). Side note: because the lessor buys the goods from the merchant, LTO orders are B2B sales and the lender is exempt from sales tax.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>HELOC — Home Equity Line of Credit</h3><span class="chip cat">open-end · secured</span></div>
+    <p>A revolving line <strong>secured by home equity</strong>: typically a <strong>draw period</strong> (~10 years, low minimums, often variable rate) followed by a <strong>repayment period</strong> (~10–20 years). Because it's secured, rates are far lower and limits far higher than unsecured POS products — but origination takes weeks (appraisal, title, closing), so it's not an instant-checkout product. It matters to us because big-ticket home improvement is exactly where HELOCs and unsecured project loans compete, and some lender ecosystems cross-offer both. Cousins: the <strong>HELoan</strong> (closed-end home equity loan) and <strong>cash-out refinance</strong>.</p>
+    <p>Two HELOC mechanics worth knowing: the variable rate is built as <strong>index + margin</strong> (a public benchmark like the Prime Rate plus a fixed markup — same construction some POS revolving products use), and many lenders offer a <strong>fixed-rate lock option</strong> — converting a chunk of the variable balance into its own fixed-rate sub-loan with its own payment. That lock is the same mental model as a promo plan per purchase on a PLCC: one revolving account, several fixed "plans" living inside it.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Down payment, LTV &amp; PMI</h3><span class="chip cat">secured lending mechanics</span></div>
+    <p>Vocabulary you'll meet whenever a conversation crosses into secured lending. A <strong>down payment</strong> is the upfront percentage of the purchase price the borrower pays at closing (typically 5–20% on mortgages) — their stake in the asset; the bigger it is, the smaller the loan and usually the better the rate. <strong>LTV</strong> (loan-to-value) = loan amount ÷ the lower of appraised value or purchase price; when LTV exceeds 80%, lenders typically require <strong>PMI</strong> (private mortgage insurance) — an extra monthly cost protecting the lender. <strong>CLTV</strong> (combined LTV) adds a proposed second lien on top of the existing mortgage — HELOC lenders typically cap it around 85% — and the <strong>appraisal</strong> supplies the value in the denominator.</p>
+    <p><em>Why it's in this guide:</em> these ratios gate how much a consumer can borrow against a home, so they shape every HELOC/HELoan offer our big-ticket flows compete with. They also have POS cousins — LTO's initial payment, and the down payments some installment programs collect at checkout — same idea: skin in the game reduces the lender's exposure.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Refinancing &amp; end of draw</h3><span class="chip cat">loan lifecycle</span></div>
+    <p><strong>Refinancing</strong> = replacing an existing loan with a new one. Two flavors: <strong>rate-and-term</strong> (same money, better terms — lower rate or longer term to cut the monthly payment) and <strong>cash-out</strong> (a bigger new first mortgage; the equity difference is paid out as a lump sum — the main competitor to a HELOC for tapping home equity). The consumer math is a <strong>break-even</strong>: closing costs ÷ monthly savings = months until the refi pays for itself.</p>
+    <p><strong>End of draw</strong> is the HELOC's built-in cliff: when the draw period ends, minimum payments jump from interest-only to principal + interest (or, on balloon HELOCs, the whole balance comes due). The standard options are refinance into a new HELOC, start the repayment period, pay off early, or a payment-modification program.</p>
+    <p><em>Why it's in this guide:</em> refinancing is where lending's competitive pressure lives — a booked loan is never final — and end-of-draw is the classic example of a <em>servicing-time</em> payment shock, the kind of event support and product teams design around.</p>
+  </div>
+
+  <div class="callout eng">
+    <span class="label">For engineers</span>
+    <p>Product type drives system behavior: revolving products have <em>open-to-buy</em> and can host many purchases; installment products are one-loan-per-purchase; LTO isn't credit and skips bureau furnishing. Model the two axes (open/closed end, secured/unsecured) explicitly — most downstream branching follows from them.</p>
+  </div>
+</section>
+
+<section id="application">
+  <div class="sechead"><span class="secnum">03</span><h2>Application &amp; credit decisioning</h2></div>
+  <p class="secsub">Application vs account, co-applicants, prequalification, soft vs hard pulls, frozen files, and what a decision legally requires.</p>
+
+  <div class="term">
+    <div class="term-head"><h3>Application vs Account</h3><span class="chip cat">the core distinction</span></div>
+    <p>An <strong>application</strong> is a <em>request for credit</em> plus its decisioning journey: applicant data, consents, bureau results, decisions, offers. An <strong>account</strong> is the <em>funded credit relationship</em> that exists only after the applicant accepts an offer and the lender <strong>books</strong> (originates) it — with an account number, a limit or loan amount, terms, a balance, statements, and a servicing lifecycle.</p>
+    <p>One consumer can hold many applications over time; each accepted application books one account. <strong>Transactions (auth/settle/refund) happen against accounts, never applications.</strong> Approved applications carry an <strong>offer validity window</strong> (often ~30 days) and an <strong>approved amount</strong> that may differ from the requested amount.</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 900 250" role="img" aria-label="Application lifecycle states flow from created to submitted to approved, with declined and expired branches; when the consumer accepts and the lender books, the flow crosses into the account lifecycle: active, possibly delinquent, then closed or charged off.">
+      <defs>
+        <marker id="l-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+        <marker id="l-aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="aha"/></marker>
+      </defs>
+      <text x="20" y="28" class="tm">APPLICATION — a request &amp; its decision</text>
+      <text x="620" y="28" class="tm">ACCOUNT — a funded relationship</text>
+      <rect x="20" y="46" width="110" height="42" rx="8" class="dbs"/>
+      <text x="75" y="72" text-anchor="middle" class="tt">Created</text>
+      <rect x="170" y="46" width="118" height="42" rx="8" class="dbs"/>
+      <text x="229" y="72" text-anchor="middle" class="tt">Submitted</text>
+      <rect x="328" y="46" width="112" height="42" rx="8" class="dbs"/>
+      <text x="384" y="72" text-anchor="middle" class="tt">Approved</text>
+      <line x1="130" y1="67" x2="164" y2="67" class="ln" marker-end="url(#l-ah)"/>
+      <line x1="288" y1="67" x2="322" y2="67" class="ln" marker-end="url(#l-ah)"/>
+      <text x="305" y="57" text-anchor="middle" class="tm">decision</text>
+      <rect x="170" y="150" width="118" height="40" rx="8" class="db"/>
+      <text x="229" y="175" text-anchor="middle" class="tt">Declined</text>
+      <line x1="229" y1="88" x2="229" y2="144" class="ln" marker-end="url(#l-ah)"/>
+      <text x="240" y="120" class="tm">adverse action</text>
+      <rect x="328" y="150" width="112" height="40" rx="8" class="db"/>
+      <text x="384" y="175" text-anchor="middle" class="tt">Expired</text>
+      <line x1="384" y1="88" x2="384" y2="144" class="ln" marker-end="url(#l-ah)"/>
+      <text x="395" y="120" class="tm">offer window lapses</text>
+      <line x1="500" y1="40" x2="500" y2="210" class="lnd"/>
+      <text x="500" y="230" text-anchor="middle" class="tm">consumer accepts · hard pull · lender books</text>
+      <line x1="440" y1="67" x2="554" y2="67" class="lna" marker-end="url(#l-aha)"/>
+      <rect x="560" y="46" width="110" height="42" rx="8" class="dba"/>
+      <text x="615" y="72" text-anchor="middle" class="tt ta">Active</text>
+      <rect x="712" y="46" width="168" height="42" rx="8" class="dbs"/>
+      <text x="796" y="66" text-anchor="middle" class="tt">Closed /</text>
+      <text x="796" y="82" text-anchor="middle" class="tt">charged-off</text>
+      <line x1="670" y1="67" x2="706" y2="67" class="ln" marker-end="url(#l-ah)"/>
+      <rect x="560" y="150" width="110" height="40" rx="8" class="dbw"/>
+      <text x="615" y="175" text-anchor="middle" class="tt tw">Delinquent</text>
+      <line x1="605" y1="88" x2="605" y2="144" class="lnw" marker-end="url(#l-ah)"/>
+      <line x1="627" y1="144" x2="627" y2="88" class="lnw" marker-end="url(#l-ah)"/>
+      <text x="680" y="130" class="tm">missed / caught up</text>
+    </svg>
+    <figcaption>Two different objects with two different lifecycles, joined only at acceptance. "My application was approved but my purchase failed" is usually an account/authorization issue (§06), not a decisioning issue.</figcaption>
+  </figure>
+
+  <div class="term">
+    <div class="term-head"><h3>Applicant &amp; co-applicant</h3><span class="chip cat">joint credit</span></div>
+    <p>A <strong>co-applicant</strong> applies <em>jointly</em>: both incomes and credit profiles count (improving debt-to-income, approval odds, and credit limit) and <strong>both are fully liable</strong> for the debt, which typically reports on both credit files. Distinguish from a <strong>cosigner</strong> (liable, not necessarily a user) and an <strong>authorized user</strong> (can spend, not liable).</p>
+    <p>Under <strong>ECOA / Reg B</strong>, joint intent must be affirmatively captured — that's why the "we intend to apply jointly" checkbox exists — and a lender can't require a spouse's signature just because an applicant is married. Adverse-action notices go to the co-applicant too.</p>
+  </div>
+  <div class="callout eng">
+    <span class="label">For engineers</span>
+    <p>Co-applicant flows double the surface area: two PII sets, two KYC verifications, two credit-pull consents, two e-signatures, two adverse-action deliveries. Model the applicant as a repeated entity from day one — retrofitting "applicant #2" onto a single-applicant schema is a classic painful migration.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Prequalification vs preapproval vs application</h3><span class="chip cat">funnel stages</span></div>
+    <p><strong>Prequalification</strong>: a <em>soft-pull</em>, non-binding indication — "you're likely to qualify for up to $X." No score impact, no commitment. On a multi-lender platform, prequal can sweep the whole waterfall softly and present comparable offers before any hard inquiry. <strong>Preapproval</strong> is stronger — often a firm offer of credit subject to verification. Marketing blurs the two; internally, be precise. The <strong>full application</strong> produces final terms, normally with a hard pull at acceptance/booking.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Soft pull vs hard pull</h3><span class="chip cat">credit inquiries</span></div>
+    <p>A <strong>soft pull</strong> doesn't affect the score and isn't visible to other lenders — used for prequalification and account reviews. A <strong>hard pull</strong> is recorded on the file, visible to other lenders, and dings the score slightly; it requires clear consumer initiation and happens when a real credit decision is made — on our flows, typically once, at acceptance with the chosen lender. That's the consumer-friendly property of the model: <em>one</em> hard pull despite a five-lender waterfall. Both are governed by <strong>FCRA</strong> (permissible purpose, disclosure, the consumer's right to see inquiries).</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Loan stacking</h3><span class="chip warncat">risk</span></div>
+    <p>Taking out multiple loans from <em>different</em> lenders in a short window, exploiting the lag before new inquiries and tradelines show up at the bureaus — so each lender underwrites blind to the others. It ranges from a consumer over-borrowing to organized first-party fraud (many maxed applications in days, no intent to repay). Lenders defend with <strong>velocity checks</strong> (how many applications/inquiries recently?), inquiry monitoring, and cross-lender data consortiums.</p>
+    <p><em>Why it's in this guide:</em> our waterfall looks superficially similar — one consumer, many lenders — but it's the opposite: soft-pull prequal, <strong>one</strong> accepted offer, one hard pull, and the platform sees every lender's decision in one place. That cross-lender visibility is actually an anti-stacking advantage isolated lenders don't have. Keep the distinction sharp: waterfall = comparison shopping; stacking = parallel borrowing the lenders can't see.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Returning consumer &amp; OTP</h3><span class="chip cat">identity</span></div>
+    <p>A consumer who already holds an account doesn't reapply — the platform locates the account from their PII and verifies it's really them with a <strong>one-time passcode (OTP)</strong>: a short code sent by text, email, or phone call that they enter in the UI. Once verified, they can pay with the existing account's available credit, skipping the application (and any credit pull) entirely. If the lookup misses (details entered differently) or available credit is insufficient, a new application enters the waterfall.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Credit freeze</h3><span class="chip cat">bureau state</span></div>
+    <p>A <strong>security freeze</strong> is a consumer-initiated block at a bureau that stops new creditors from reading the file — so a frozen file usually means the lender <em>cannot decision the application</em> and returns a frozen-file outcome. Freezes are free by federal law and the consumer must lift ("<strong>thaw</strong>") them per bureau — often online in minutes. Related but different: a <strong>fraud alert</strong> (file readable, but extra identity verification required) and a <strong>credit lock</strong> (a bureau's proprietary on/off product; similar effect, contractual rather than statutory).</p>
+    <p>Good platform UX detects the frozen-file reason, tells the user <em>which bureau</em> to thaw, and lets the application resume — this recovers real conversions.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Bureaus, scores &amp; decision outcomes</h3><span class="chip cat">decisioning</span></div>
+    <p>Three national bureaus — <strong>Experian, Equifax, TransUnion</strong> — feed scores like <strong>FICO</strong> and VantageScore. A <strong>thin file / no-hit</strong> means not enough history to score — one reason second-look and alternative-data lenders exist. Decisions come back <strong>approved</strong> (sometimes as a <strong>counter-offer</strong> with a different amount or term), <strong>declined</strong>, or <strong>pended</strong> for manual review (income docs, ID verification).</p>
+    <p>An <strong>adverse action notice</strong> (FCRA + ECOA) must follow a decline or counter-offer — principal reasons, the bureau used, score disclosure — within 30 days. This is why decline reasons are structured data, never free text, and why "silently decline" is not an option.</p>
+  </div>
+
+  <div class="callout law">
+    <span class="label">Also in this stage</span>
+    <p><strong>KYC / identity verification</strong> (CIP under the BSA / USA PATRIOT Act — verify name, DOB, address, SSN/ITIN), <strong>OFAC</strong> sanctions screening, fraud and velocity checks, and <strong>MLA</strong> (Military Lending Act) covered-borrower status checks all run alongside the credit decision. All of it runs on <strong>PII</strong> (personally identifiable information: full name, SSN, phone, email, billing/shipping address) — the most sensitive data class the platform handles, moved only over approved secure channels.</p>
+  </div>
+</section>
+<section id="offers">
+  <div class="sechead"><span class="secnum">04</span><h2>Offers &amp; rate plans</h2></div>
+  <p class="secsub">What lenders return, how promotional financing is priced, and the two tools consumers see before ever applying.</p>
+
+  <div class="term">
+    <div class="term-head"><h3>Offer</h3><span class="chip cat">decisioning output</span></div>
+    <p>What a lender returns for an application: product type + approved amount + one or more <strong>rate plans</strong>. The platform normalizes offers across lenders so a consumer can compare "$104/mo for 36 months at 9.99% APR" against "0% for 12 months, equal payments" side by side. Offers expire (validity window) and can be conditional pending verification.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Rate plans (promotional / financing plans)</h3><span class="chip cat">pricing</span></div>
+    <p>A <strong>rate plan</strong> is a priced set of terms, usually identified by a lender <strong>plan code</strong>, that a merchant enables for given products, categories, or ticket sizes ("6/12/18-month options above $299"). The three families you must be able to tell apart:</p>
+    <ul>
+      <li><strong>Standard APR</strong> — the ordinary purchase APR; revolving minimums or a fixed installment schedule.</li>
+      <li><strong>0% APR equal payments</strong> ("equal pay," "X months promotional financing") — truly no interest; the balance divides into equal monthly payments. The merchant typically pays the lender a <strong>subsidy / buy-down</strong> for it. No retroactive interest, ever.</li>
+      <li><strong>Deferred interest</strong> ("no interest <em>if paid in full</em> in X months," "same-as-cash") — interest <strong>accrues from day one</strong> but is <strong>waived</strong> if the full promo balance is paid before the promo ends. Miss it by a dollar or a day and the <em>entire accrued interest</em> lands retroactively.</li>
+    </ul>
+    <p>Internally you'll also meet promo-type shorthand pulled from lender configuration — codes like <code>FP</code> (flexible payments), <code>EPNI</code> (equal payments, no interest), and <code>WPDI</code> (deferred interest with payments) — these drive which widget and promotional modal a product page shows.</p>
+  </div>
+
+  <div class="callout trap">
+    <span class="label">The classic trap</span>
+    <p><strong>Deferred interest ≠ 0% equal pay.</strong> Deferred interest is the most misunderstood consumer product in this industry: minimum payments alone usually do <em>not</em> pay the balance off within the promo window. Reg Z / CARD Act impose specific disclosure and payment-allocation rules on it, and support teams field the fallout every promo-expiry season. Keep the two plan families straight in copy, in code, and on calls.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Anatomy of a real rate plan</h3><span class="chip cat">worked example</span></div>
+    <p>This is what a plan actually looks like as data — a lightly trimmed real plan object from a lender program (a 120-month installment loan with a 6-month 0% promo):</p>
+    <pre><code>{
+  "planId": "1065",
+  "category": "Mixed Interest Rate, 0% Promo Period",
+  "minInterestRate": "5.99",  "maxInterestRate": "5.99",
+  "paymentfactor": "1.11",    "promoPaymentFactor": "0.00",
+  "term": 126,                "promotionMonths": "6",
+  "purchaseMonths": "6",      "merchantFee": "24.25",
+  "creditProduct": "Installment",
+  "ficoMinimum": 0,           "ficoMaximum": 1000,
+  "minimumLoanAmount": "1000.00", "maximumLoanAmount": "250000.00",
+  "prequalMultiOfferPlan": false, "ficoBased": false, "solar": false
+}</code></pre>
+    <p>How to read it:</p>
+    <ul>
+      <li><strong>Payment factor</strong> — the monthly payment as a percentage of principal: factor <code>1.11</code> means $11.10/month per $1,000 financed. It's precomputed amortization (<code>P·r/(1−(1+r)^−n)</code>), so estimators and reps never do the math live. <code>promoPaymentFactor: 0.00</code> = no payments due during the promo.</li>
+      <li><strong>APR ≠ interest rate</strong> — this plan's disclosure says <em>5.40% APR</em> even though the note rate is <em>5.99%</em>: six months at 0% with no payments dilute the total cost of credit, and the APR is the rate that makes the whole cash flow balance. A promo can make the disclosed APR <em>lower</em> than the rate the consumer eventually pays — the single best concrete example of the APR/interest-rate distinction.</li>
+      <li><strong>term: 126</strong> = 6 promo months + 120 amortized payments — the term field counts the whole life, not just the paying part.</li>
+      <li><strong>merchantFee is the buy-down, visible</strong> — on the same 120-month term, a 5.99% consumer rate costs the merchant 24.25% of the ticket while a 9.99% rate costs 14.25%; stretching the 0% promo from 6 to 12 months raises the fee again (24.25 → 27.00). Cheap money for the consumer is bought with merchant subsidy — you can watch the trade-off directly in the plan table.</li>
+      <li><strong>purchaseMonths — the purchase window</strong>: the loan is approved once, but new purchases can be charged against it for N months. That makes it a <em>multi-draw</em> installment loan — vital for home improvement, where materials and labor bill over weeks (§10).</li>
+      <li><strong>Three text fields, three audiences</strong>: <code>description</code> (internal/marketing label), <code>productDescription</code> (plain-language mechanics), <code>productDisclosure</code> (the Reg Z legal text — naming the servicer, the NMLS number, and the program-lender model: "the platform is not the lender; credit decisions are made by program lenders").</li>
+      <li><strong>Config flags</strong>: <code>ficoMinimum/Maximum</code> and <code>ficoBased</code> (rate-by-score plans), <code>prequalMultiOfferPlan</code> (eligible for multi-offer prequal), min/max loan amounts, <code>solar</code> (solar-vertical plans have their own shapes), <code>activationStatus</code> (plans are versioned config — they get turned on and off).</li>
+    </ul>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Rate plan vs offer vs payment estimator</h3><span class="chip cat">don't mix these up</span></div>
+    <p>Three objects that constantly get conflated. They chain: the estimator quotes <em>from plans</em>, an application produces <em>an offer referencing plans</em>, and acceptance books the account <em>onto exactly one plan</em>.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th></th><th>Rate plan</th><th>Offer</th><th>Payment estimator</th></tr></thead>
+        <tbody>
+          <tr><td>What it is</td><td>A priced template (APR, term, promo type)</td><td>A per-applicant decision result</td><td>A math tool</td></tr>
+          <tr><td>When created</td><td>Configured upfront by lender + merchant</td><td>At decisioning, per application</td><td>Computed on every page view</td></tr>
+          <tr><td>Carries</td><td>Rates, term, promo months, merchant fee, FICO bands, amount limits</td><td>Approved amount, expiry, the plan(s) this applicant qualifies for</td><td>An estimated monthly payment, nothing else</td></tr>
+          <tr><td>Has applicant data?</td><td>Never</td><td>Always</td><td>Never</td></tr>
+          <tr><td>Goal</td><td>Define the priced menu</td><td>Convert an approval into an acceptance</td><td>Set expectations before anyone applies</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Payment estimator</h3><span class="chip cat">pre-purchase tool</span></div>
+    <p>The calculator that turns (ticket amount, APR, term) into an estimated monthly payment: standard amortization — <code>P·r / (1 − (1+r)^−n)</code> — for installment plans, or simple division for 0% equal-pay. It powers "as low as $52/mo" messaging. The assumptions (representative plan, best-qualified APR) matter, which is why estimator copy gets compliance review.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Promotional widget</h3><span class="chip cat">pre-purchase tool</span></div>
+    <p>An embeddable component on product, cart, and checkout pages showing financing options <em>before any application exists</em> — "As low as $58/mo" plus a prequalify call-to-action. It runs offer-calculation rules against the ticket and the merchant's enabled plans. Consumers who see a monthly payment early are far more likely to finance, which makes the widget one of the highest-leverage conversion surfaces on the platform.</p>
+    <p>Clicking the widget opens the <strong>promotional modal</strong> — the screen with full details of the promotion(s) the lender offers for that merchant, and usually the entry into the apply flow. Widgets come in configurable <strong>modes</strong>: <em>price-focused</em> (monthly price highlighted — the most common), <em>brand-focused</em> (the financing brand highlighted next to the price), <em>multi-promotion</em> (several offers shown), and <em>no-promo</em> (links out to a financing page instead of opening the modal). The widget's <em>type</em> follows the promo plan behind it (FP / EPNI / WPDI), which comes from lender configuration.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Financing brands &amp; white label</h3><span class="chip cat">program branding</span></div>
+    <p>The financing option appears at checkout as a branded payment method, and the brand depends on the merchant's program: it can be a platform brand, a lender's own brand (when a single lender anchors or fully owns the waterfall), or <strong>white label</strong> — the merchant's own name on the program ("Lenovo Financing," "Wayfair Financing") with the platform running everything underneath. Support tip: the consumer only ever sees the brand — they usually don't know (and don't need to know) which lender or platform sits behind it, until they look at their credit agreement or statement.</p>
+  </div>
+
+  <div class="callout law">
+    <span class="label">Compliance guardrail</span>
+    <p>Under <strong>Reg Z advertising rules</strong>, stating a <strong>trigger term</strong> — a monthly payment amount, "0% APR for 12 months," a down-payment figure — obligates you to include the full set of required disclosures. That's why widget and estimator copy is lawyer-reviewed and why the fine print exists. Changing promo copy is never "just a copy change."</p>
+  </div>
+</section>
+
+<section id="checkout">
+  <div class="sechead"><span class="secnum">05</span><h2>Checkout, account numbers &amp; funding rails</h2></div>
+  <p class="secsub">What happens at acceptance, what an account number really is (legally and technically), and how a virtual card moves the money.</p>
+
+  <h3>Two flows, two modes, three surfaces</h3>
+  <p>Consumers reach financing through one of two flows. In the <strong>apply flow</strong> (apply-only), the consumer just applies — typically from the promotional widget/modal — and, if approved, uses the approved amount later in the merchant's checkout. In the <strong>checkout flow</strong>, the consumer applies <em>while placing the order</em>: they select the financing payment method at checkout, the modal opens, and they either apply-and-buy or locate an existing account (returning-consumer lookup + OTP, §03) and complete the purchase.</p>
+  <p>Independently of the flow, integrations run in one of two <strong>modes</strong>: <strong>platform-managed</strong> (the consumer enters personal information into the platform's own UI) or <strong>merchant-managed</strong> (the merchant's UI collects the data and the merchant's servers forward it to the platform's APIs). The consumer can't tell the difference — what changes is on the backend: <em>who collects and owns the data</em>, which drives privacy, PCI/PII handling, and contract terms.</p>
+  <p>Beyond the merchant's website, the same flows run on in-store and call-center surfaces: a <strong>sales app</strong> where a rep builds the cart and starts an application on the spot, and a <strong>send-link</strong> option (call-center API) that texts or emails the apply/checkout link to the customer's own device so they enter PII themselves.</p>
+
+  <h3>What happens at acceptance</h3>
+  <p>Consumer picks an offer → consents → <strong>hard pull</strong> (if not already done) → lender <strong>books the account</strong> → consumer <strong>e-signs</strong> the credit agreement → account number issued → checkout proceeds to authorization (§06).</p>
+
+  <div class="term">
+    <div class="term-head"><h3>E-signature &amp; E-SIGN consent</h3><span class="chip cat">legal checkpoint</span></div>
+    <p>Under the <strong>E-SIGN Act</strong>, electronic signatures and electronic disclosures are as legally valid as paper — but only after the consumer gives <strong>consent to electronic records</strong> (agreeing to receive legal documents electronically, with the ability to withdraw). That consent step is why signing flows start with a checkbox that feels redundant: it isn't UX, it's the legal foundation for everything signed after it.</p>
+    <p>What actually gets e-signed across our flows: the <strong>credit agreement</strong> (and its Summary of Terms) at booking; joint-intent confirmations on co-applicant flows; and, in home improvement, the <strong>certificate of completion</strong> that releases funds to the contractor (§10). Each signature carries an <strong>audit trail</strong> — timestamp, verified identity, evidence of intent — which is what makes it enforceable. Treat signature events as compliance artifacts, not form submissions: they must be stored, retrievable, and tied to the exact document version the consumer saw.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Account number — the legal &amp; technical view</h3><span class="chip cat">identifiers</span></div>
+    <p>Two very different species share the name:</p>
+    <p><strong>Card PAN (Primary Account Number)</strong> — the 15–16-digit card number (PLCC, card-rail DLOC, VCC). Structure: <strong>BIN/IIN</strong> (first 6–8 digits identify the issuer/program) + account identifier + a <strong>Luhn</strong> check digit. PANs are <strong>PCI-DSS</strong> scoped: strict storage/transmission rules, <strong>tokenization</strong> instead of raw storage, <strong>masking</strong> for display (at most BIN + last 4), never storing CVV after authorization, key management, and audit scope. Architectural rule of thumb: if you can avoid touching raw PANs — delegating to the issuer-processor's tokens — you keep entire systems out of PCI scope.</p>
+    <p><strong>Loan / line account number (non-card)</strong> — the lender's servicing identifier. Not PCI data, but it <em>is</em> nonpublic personal information (<strong>NPI</strong>) under <strong>GLBA</strong>: mask it in UIs and logs, encrypt at rest, restrict to need-to-know. It's what appears on statements, what the consumer pays against, and the key for servicing, disputes, and records-retention obligations.</p>
+  </div>
+
+  <div class="callout eng">
+    <span class="label">For engineers</span>
+    <p>Keep a clean identifier map: platform application ID ↔ platform account &amp; transaction IDs ↔ lender account ID ↔ processor token. Put <strong>idempotency keys</strong> on account creation and on every money-movement call — a retry must never double-book an account or double-charge a purchase. Support looks up accounts by <strong>last 4</strong> plus identity verification, never by full number over the phone; full account numbers don't belong in emails, logs, analytics events, or screenshots.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Card rails 101 — network, issuer, acquirer</h3><span class="chip cat">payments anatomy</span></div>
+    <p>Every card payment — a physical PLCC swipe or a VCC charge — crosses the same four roles. The <strong>card network</strong> (Visa, Mastercard, Amex, Discover) is the rails: it routes authorization and settlement messages between the parties and writes the rulebook for auths, refunds, and chargebacks. "Visa rails" just means transactions carried and governed by Visa's network. The <strong>issuer</strong> is the financial institution that issued the card and owns the cardholder account — it's the party that approves or declines every authorization. The <strong>issuer-processor</strong> (e.g., Marqeta) is the technology layer running card issuance and authorization processing on behalf of an issuing bank/program — this is who mints our virtual cards and fires the JIT funding calls. The <strong>acquirer</strong> (merchant acquirer/processor) sits on the merchant's side: it accepts card transactions for the merchant and receives its settlement money from the network.</p>
+    <p>Money mechanics on the rails: on each transaction the acquirer pays the issuer <strong>interchange</strong> (a network-set fee) — which is how issuing programs earn revenue and why funding purchases over card rails isn't free. The flow for one purchase: merchant → acquirer → network → issuer (approve?) → back down the same chain; settlement follows the same path with money, typically next day.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>VCC &amp; VCN — Virtual Credit Card funding</h3><span class="chip cat">funding rail</span></div>
+    <p>The trick that lets a lender fund a purchase at any merchant <strong>without the merchant integrating with that lender</strong>: at checkout, the platform — via an issuer-processor such as <strong>Marqeta</strong> — issues a <strong>single-use virtual card</strong> funded by the lender, and the merchant simply charges that card on the card rails it already has.</p>
+    <p><strong>VCC vs VCN:</strong> in practice the two are used interchangeably, but strictly the <strong>VCC</strong> (virtual credit card) is the card product — the account with its controls and funding — while the <strong>VCN</strong> (virtual card number) is the number itself: a real 16-digit PAN with expiry and CVV, existing only digitally, no plastic ever printed. The VCN is a first-class PAN — Luhn-valid, BIN-identified, routable on Visa/Mastercard rails, and fully <strong>PCI-scoped</strong>, so all the §"account number" handling rules apply to it.</p>
+    <p><strong>JIT (just-in-time) funding:</strong> the card holds no standing balance; when the merchant authorizes it, the processor asks the funding source in real time to approve exactly that authorization. Controls enforce an <strong>exact or maximum amount</strong>, an <strong>expiry window</strong>, a <strong>merchant / MCC lock</strong>, and single use. Refunds flow back onto the VCC and up to the lender; captures can be partial — the postsale lifecycle (§06) applies symmetrically, and the VCC settlement report becomes one of the ledgers reconciliation must match (§07).</p>
+    <p>The alternative rail is <strong>direct integration / ACH settlement</strong>: the lender pays the merchant on a funding schedule — no card, but it requires per-lender merchant onboarding and payout logic.</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 880 350" role="img" aria-label="Virtual card just-in-time funding sequence: the platform requests a single-use card funded by the lender; the merchant authorizes the card like any card payment; the processor's JIT funding check approves the exact amount in real time; settlement pulls funds from the lender to the merchant.">
+      <defs>
+        <marker id="v-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+        <marker id="v-aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="aha"/></marker>
+      </defs>
+      <rect x="20" y="20" width="160" height="44" rx="8" class="dbs"/>
+      <text x="100" y="47" text-anchor="middle" class="tt">Merchant</text>
+      <rect x="250" y="20" width="160" height="44" rx="8" class="dbs"/>
+      <text x="330" y="40" text-anchor="middle" class="tt">Processor</text>
+      <text x="330" y="56" text-anchor="middle" class="tm">issuer · e.g. Marqeta</text>
+      <rect x="480" y="20" width="160" height="44" rx="8" class="dba"/>
+      <text x="560" y="47" text-anchor="middle" class="tt ta">Platform</text>
+      <rect x="710" y="20" width="150" height="44" rx="8" class="dbs"/>
+      <text x="785" y="47" text-anchor="middle" class="tt">Lender</text>
+      <line x1="100" y1="64" x2="100" y2="330" class="lnd"/>
+      <line x1="330" y1="64" x2="330" y2="330" class="lnd"/>
+      <line x1="560" y1="64" x2="560" y2="330" class="lnd"/>
+      <line x1="785" y1="64" x2="785" y2="330" class="lnd"/>
+      <line x1="560" y1="96" x2="336" y2="96" class="lna" marker-end="url(#v-aha)"/>
+      <text x="448" y="86" text-anchor="middle" class="tm">1 · issue single-use VCC (amount, merchant lock, expiry)</text>
+      <line x1="330" y1="130" x2="106" y2="130" class="ln" marker-end="url(#v-ah)"/>
+      <text x="218" y="120" text-anchor="middle" class="tm">2 · card details to charge</text>
+      <line x1="100" y1="170" x2="324" y2="170" class="ln" marker-end="url(#v-ah)"/>
+      <text x="212" y="160" text-anchor="middle" class="tm">3 · authorize (normal card auth)</text>
+      <line x1="330" y1="210" x2="554" y2="210" class="lna" marker-end="url(#v-aha)"/>
+      <text x="442" y="200" text-anchor="middle" class="tm">4 · JIT funding check — exact amount?</text>
+      <line x1="560" y1="244" x2="336" y2="244" class="lna" marker-end="url(#v-aha)"/>
+      <text x="448" y="234" text-anchor="middle" class="tm">5 · approve · charge account / draw loan</text>
+      <line x1="785" y1="290" x2="106" y2="290" class="lna" marker-end="url(#v-aha)"/>
+      <text x="448" y="280" text-anchor="middle" class="tm">6 · settlement — lender funds reach merchant over card rails</text>
+      <text x="20" y="326" class="tm">merchant never integrates with the lender — the card rails carry the money</text>
+    </svg>
+    <figcaption>JIT funding: the virtual card is an addressing mechanism, not a balance. Approval happens in real time against the lender-funded account, and the merchant experiences an ordinary card payment.</figcaption>
+  </figure>
+</section>
+
+<section id="postsale">
+  <div class="sechead"><span class="secnum">06</span><h2>Postsale — the transaction lifecycle</h2></div>
+  <p class="secsub">Everything after "approved" is a small state machine per purchase. Master it and you can debug most support tickets.</p>
+
+  <p>The object moving through this state machine is the <strong>charge</strong> — internal name for an order placed through the platform. Every successful checkout produces a charge, and every charge carries a payment status that walks the states below, in order: authorized → settled → (refunded / disputed), with void and expiry as the early exits.</p>
+
+  <div class="term">
+    <div class="term-head"><h3>Authorization (auth)</h3><span class="chip cat">hold</span></div>
+    <p>A <em>hold</em> against the account's open-to-buy (or the loan amount). No money moves; available credit drops. Auths <strong>expire</strong> after a number of days (varies by product and rail) — a stale auth must be <strong>reauthorized</strong> before capture.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Settlement / capture</h3><span class="chip cat">money moves</span></div>
+    <p>The merchant confirms fulfillment and the held amount — or part of it — becomes a real charge. <strong>Partial capture</strong> and <strong>multi-capture</strong> support split shipments: retailers settle at <em>shipment</em>, not at order placement. Only after settlement does the charge hit the consumer's billing cycle and start any promo clock.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Void / auth reversal</h3><span class="chip cat">before settlement</span></div>
+    <p>Cancels an authorization <strong>before</strong> settlement: the hold is released and nothing ever appears on a statement. Cheap, clean, invisible to the consumer's bill. Watch out: not every lender supports voids — on those programs a transaction must settle and then be fully <em>refunded</em>, which does touch the statement. Know which lenders in the waterfall behave this way before advising a merchant or consumer.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Refund</h3><span class="chip cat">after settlement</span></div>
+    <p>Returns money <strong>after</strong> settlement — a credit back to the account (and, on VCC rails, back up the chain to the lender). Full or partial. On promo plans, refunds reduce the promo balance according to the lender's allocation rules — a reliable source of consumer-confusion tickets ("I returned it, why is there still a balance?").</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Chargeback / dispute</h3><span class="chip warncat">contested</span></div>
+    <p>The consumer disputes a settled charge with the issuer/lender ("item never arrived," "not my transaction"). On credit products, <strong>FCBA / Reg Z billing-error rights</strong> apply — generally the dispute must be raised within 60 days of the statement. Flow: dispute opened → provisional credit → merchant <strong>representment</strong> (evidence) → resolution, categorized by <strong>reason codes</strong>. Liability splits between merchant and lender by program rules and rail. A chargeback is money movement <em>and</em> a compliance workflow: it hits reconciliation, merchant debits, and reporting.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Reversal</h3><span class="chip cat">umbrella term</span></div>
+    <p>The umbrella word people use loosely. An <strong>auth reversal</strong> is a void; a <strong>transaction/settlement reversal</strong> undoes a capture (often same-cycle); a <strong>funding reversal</strong> corrects money movement between institutions. When someone says "reversal," ask <em>which object</em> is being reversed.</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 880 330" role="img" aria-label="Transaction state machine: an authorization is either voided, expires, or is captured; a captured charge can be partially or fully refunded, or disputed as a chargeback which is represented and resolved.">
+      <defs>
+        <marker id="s-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+        <marker id="s-aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="aha"/></marker>
+        <marker id="s-ahw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahw"/></marker>
+      </defs>
+      <rect x="30" y="120" width="150" height="52" rx="9" class="dba"/>
+      <text x="105" y="142" text-anchor="middle" class="tt ta">Authorized</text>
+      <text x="105" y="160" text-anchor="middle" class="tm">hold · no money yet</text>
+      <rect x="330" y="120" width="170" height="52" rx="9" class="dba"/>
+      <text x="415" y="142" text-anchor="middle" class="tt ta">Captured</text>
+      <text x="415" y="160" text-anchor="middle" class="tm">settled · money moved</text>
+      <line x1="180" y1="146" x2="324" y2="146" class="lna" marker-end="url(#s-aha)"/>
+      <text x="252" y="136" text-anchor="middle" class="tm">capture</text>
+      <rect x="30" y="30" width="150" height="44" rx="9" class="db"/>
+      <text x="105" y="57" text-anchor="middle" class="tt">Voided</text>
+      <line x1="105" y1="120" x2="105" y2="80" class="ln" marker-end="url(#s-ah)"/>
+      <text x="116" y="102" class="tm">void / auth reversal</text>
+      <rect x="30" y="240" width="150" height="44" rx="9" class="db"/>
+      <text x="105" y="267" text-anchor="middle" class="tt">Expired</text>
+      <line x1="105" y1="172" x2="105" y2="234" class="lnd" marker-end="url(#s-ah)"/>
+      <text x="116" y="208" class="tm">days pass → reauth needed</text>
+      <rect x="620" y="30" width="170" height="52" rx="9" class="db"/>
+      <text x="705" y="52" text-anchor="middle" class="tt">Refunded</text>
+      <text x="705" y="70" text-anchor="middle" class="tm">full or partial</text>
+      <line x1="500" y1="132" x2="614" y2="66" class="ln" marker-end="url(#s-ah)"/>
+      <text x="574" y="86" text-anchor="end" class="tm">refund</text>
+      <rect x="620" y="150" width="170" height="52" rx="9" class="dbw"/>
+      <text x="705" y="172" text-anchor="middle" class="tt tw">Chargeback</text>
+      <text x="705" y="190" text-anchor="middle" class="tm">dispute opened</text>
+      <line x1="500" y1="158" x2="614" y2="170" class="lnw" marker-end="url(#s-ahw)"/>
+      <text x="556" y="152" text-anchor="middle" class="tm">dispute (≤60 days)</text>
+      <rect x="620" y="252" width="170" height="52" rx="9" class="db"/>
+      <text x="705" y="274" text-anchor="middle" class="tt">Resolved</text>
+      <text x="705" y="292" text-anchor="middle" class="tm">won or lost</text>
+      <line x1="705" y1="202" x2="705" y2="246" class="lnw" marker-end="url(#s-ahw)"/>
+      <text x="716" y="228" class="tm">representment</text>
+    </svg>
+    <figcaption>The canonical per-purchase state machine. Before settlement, cancel with a void (invisible to the statement); after settlement, money comes back only via refund or dispute.</figcaption>
+  </figure>
+</section>
+<section id="reconciliation">
+  <div class="sechead"><span class="secnum">07</span><h2>Reconciliation</h2></div>
+  <p class="secsub">Four ledgers describe every purchase. Reconciliation is the recurring proof that they all agree.</p>
+
+  <p>On a multi-lender platform, at least four systems record the same transaction: the <strong>platform's</strong> ledger, the <strong>lender's</strong> funding and settlement reports, the <strong>merchant's</strong> order system, and — on VCC rails — the <strong>processor's</strong> settlement files. <strong>Reconciliation</strong> is the daily/monthly process of matching every auth, settle, refund, and chargeback, and every dollar funded, netted, or fee'd, across all of them.</p>
+
+  <figure>
+    <svg viewBox="0 0 880 300" role="img" aria-label="Reconciliation data flow: platform ledger, lender funding report, merchant orders, and VCC processor settlement file all feed a matching engine, which outputs matched transactions and a breaks queue for exceptions.">
+      <defs>
+        <marker id="r-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+        <marker id="r-aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="aha"/></marker>
+        <marker id="r-ahw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahw"/></marker>
+      </defs>
+      <rect x="20" y="30" width="200" height="46" rx="8" class="dbs"/>
+      <text x="120" y="58" text-anchor="middle" class="tt">Platform ledger</text>
+      <rect x="20" y="100" width="200" height="46" rx="8" class="dbs"/>
+      <text x="120" y="128" text-anchor="middle" class="tt">Lender funding report</text>
+      <rect x="20" y="170" width="200" height="46" rx="8" class="dbs"/>
+      <text x="120" y="198" text-anchor="middle" class="tt">Merchant orders</text>
+      <rect x="20" y="240" width="200" height="46" rx="8" class="dbs"/>
+      <text x="120" y="268" text-anchor="middle" class="tt">VCC settlement file</text>
+      <line x1="220" y1="53" x2="354" y2="130" class="ln" marker-end="url(#r-ah)"/>
+      <line x1="220" y1="123" x2="354" y2="148" class="ln" marker-end="url(#r-ah)"/>
+      <line x1="220" y1="193" x2="354" y2="168" class="ln" marker-end="url(#r-ah)"/>
+      <line x1="220" y1="263" x2="354" y2="186" class="ln" marker-end="url(#r-ah)"/>
+      <rect x="360" y="110" width="200" height="96" rx="10" class="dba"/>
+      <text x="460" y="150" text-anchor="middle" class="tt ta">Match engine</text>
+      <text x="460" y="170" text-anchor="middle" class="tm">by txn ID · token ·</text>
+      <text x="460" y="186" text-anchor="middle" class="tm">amount · date</text>
+      <line x1="560" y1="136" x2="674" y2="92" class="lna" marker-end="url(#r-aha)"/>
+      <rect x="680" y="52" width="180" height="56" rx="9" class="dba"/>
+      <text x="770" y="76" text-anchor="middle" class="tt ta">Matched ✓</text>
+      <text x="770" y="94" text-anchor="middle" class="tm">books close</text>
+      <line x1="560" y1="180" x2="674" y2="224" class="lnw" marker-end="url(#r-ahw)"/>
+      <rect x="680" y="208" width="180" height="56" rx="9" class="dbw"/>
+      <text x="770" y="232" text-anchor="middle" class="tt tw">Breaks queue</text>
+      <text x="770" y="250" text-anchor="middle" class="tm">investigate exceptions</text>
+    </svg>
+    <figcaption>Three- or four-way matching. A "break" is any record the engine can't pair across ledgers — each one is either a timing artifact or a real bug.</figcaption>
+  </figure>
+
+  <h3>How it works</h3>
+  <ul>
+    <li><strong>Inputs:</strong> settlement files, funding/remittance reports, chargeback reports, fee invoices.</li>
+    <li><strong>Matching:</strong> automated by transaction IDs, VCC token, amounts, and dates, with a <strong>breaks</strong> queue for exceptions.</li>
+    <li><strong>Usual causes of breaks:</strong> timing (a refund crossing the funding cutoff), partial captures, amount mismatches (fees, rounding), missing records (retry/idempotency bugs), chargebacks landing in a different period.</li>
+    <li><strong>Money mechanics:</strong> <strong>gross vs net settlement</strong> (are merchant fees withheld from funding, or invoiced separately?), lender discount/subsidy netting, chargeback debits.</li>
+  </ul>
+
+  <div class="callout eng">
+    <span class="label">For engineers</span>
+    <p>Reconciliation is the system's <em>proof of correctness</em>. A postsale bug — double capture, lost refund, dropped webhook — shows up here first. Treat recon breaks as production signals, not accounting trivia, and design money-movement APIs so every record carries the IDs the match engine needs.</p>
+  </div>
+</section>
+
+<section id="compliance">
+  <div class="sechead"><span class="secnum">08</span><h2>Compliance map</h2></div>
+  <p class="secsub">Which regulation governs which moment. The lender is the creditor and owns most obligations — but everyone in the chain has exposure.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Regulation</th><th>What it governs in our world</th></tr></thead>
+      <tbody>
+        <tr><td>FCRA</td><td>Credit pulls (permissible purpose), soft vs hard inquiries, adverse-action notices, data furnishing and consumer disputes of bureau data.</td></tr>
+        <tr><td>ECOA / Reg B</td><td>Fair lending and non-discrimination, joint applicant and spousal-signature rules, adverse-action timing (30 days), what data may be collected.</td></tr>
+        <tr><td>TILA / Reg Z</td><td>Cost-of-credit disclosures (APR, finance charge), promotional and deferred-interest rules, advertising <strong>trigger terms</strong>, billing-error (dispute) rights.</td></tr>
+        <tr><td>CARD Act</td><td>Card-specific rules: payment allocation on deferred-interest balances, ability-to-pay, penalty limits.</td></tr>
+        <tr><td>GLBA</td><td>Privacy and safeguarding of consumer financial data (NPI) — including non-card account numbers.</td></tr>
+        <tr><td>PCI-DSS</td><td>Card PAN handling: storage, masking, tokenization, audit scope. Industry standard, not a law — contractually mandatory.</td></tr>
+        <tr><td>E-SIGN</td><td>Validity of electronic signatures and disclosures; consent-to-electronic-records mechanics.</td></tr>
+        <tr><td>BSA / PATRIOT · OFAC</td><td>KYC identity verification (CIP), sanctions screening, anti–money-laundering.</td></tr>
+        <tr><td>SCRA / MLA</td><td>Servicemember protections: rate caps, required status checks for covered borrowers.</td></tr>
+        <tr><td>UDAAP</td><td>The catch-all: nothing unfair, deceptive, or abusive — drives copy review and dark-pattern avoidance everywhere.</td></tr>
+        <tr><td>State law</td><td>Lender licensing, rate caps/usury — why lender and product availability varies by state.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why the same application gets different treatment by state</h3>
+  <p>Federal law sets the floor; states layer their own rules on top. The practical effect you'll see in the product: extra data collected in some states, different offers (or missing waterfall rungs) in others, and state-specific paperwork at signing. The recurring patterns:</p>
+  <ul>
+    <li><strong>Community property states</strong> (AZ, CA, ID, LA, NV, NM, TX, WA, WI): spouses share ownership of marital assets and debts, so lenders may collect marital status and spouse information that Reg B otherwise restricts — Wisconsin goes further with spousal-notification requirements. This is the classic "why does the form ask extra questions only in this state?"</li>
+    <li><strong>Rate caps &amp; licensing:</strong> each state licenses lenders and caps rates (usury). A high-APR second-look product may be repriced or simply absent in strict-cap states — so the same applicant sees a different waterfall depending on where they live.</li>
+    <li><strong>Texas home equity:</strong> the state constitution puts hard limits on borrowing against a homestead (LTV cap, fee cap, a mandatory waiting period after application, limits on concurrent equity loans) — the canonical example of one state reshaping a whole product.</li>
+    <li><strong>LTO carve-outs:</strong> a few states treat rent-to-own as a credit sale rather than a lease, so LTO lenders often don't operate there — the last waterfall rung disappears. California's cash-price early-buyout rule (§02) is another state-specific LTO twist.</li>
+    <li><strong>State addenda &amp; disclosures:</strong> credit agreements pick up state-specific inserts — different late-fee caps and grace periods, cooling-off rights, translation requirements (e.g., California requires contract translations when negotiation happened in certain non-English languages).</li>
+  </ul>
+  <p>Treat the state lists above as illustrative for orientation, not as a compliance reference — the authoritative per-state matrix lives with each lender's program rules and our compliance team. The takeaway for builders: <em>state</em> is a first-class input to decisioning, offer presentation, and document generation, never just an address field.</p>
+</section>
+
+<section id="walkthrough">
+  <div class="sechead"><span class="secnum">09</span><h2>End-to-end story</h2></div>
+  <p class="secsub">One purchase, every concept in this guide, in order.</p>
+
+  <h3>Scenario A — the happy path</h3>
+  <p>A homeowner needs a <strong>$6,400 HVAC replacement</strong>, quoted in-home by a franchise technician. The technician shows monthly options from the <strong>payment estimator</strong> ("from $118/mo"). The homeowner scans a QR code → <strong>prequalification</strong> (soft pull) → the platform sweeps the <strong>waterfall</strong>: the prime bank declines (thin file), a near-prime installment lender approves $7,000, and the <strong>second-look</strong> lender approves $6,500 at a higher APR.</p>
+  <p>The homeowner picks the near-prime <strong>offer</strong> on an 18-month <strong>0% equal-pay rate plan</strong> (merchant-subsidized) → consents → <strong>hard pull</strong> → the lender <strong>books the account</strong>, the agreement is <strong>e-signed</strong>. The platform issues a <strong>VCC</strong> locked to the merchant for $6,400; the technician charges it — <strong>authorization</strong> now, <strong>capture</strong> after installation. Two weeks later a $400 part is returned → <strong>partial refund</strong> to the account. At month-end, <strong>reconciliation</strong> matches platform ↔ lender funding report ↔ VCC settlement file; one <strong>break</strong> (the refund crossed the funding cutoff) auto-clears next cycle.</p>
+
+  <h3>Scenario B — the recovery paths</h3>
+  <p>Same flow, but the bureau returns a <strong>frozen file</strong> → the UX names the bureau to thaw, and the application resumes. Still declined alone on DTI → the spouse joins as a <strong>co-applicant</strong> (joint intent captured per Reg B) → approved. Or: the order is canceled before shipment → <strong>void</strong>, nothing ever reaches a statement. Or: the consumer doesn't recognize a charge → <strong>dispute / chargeback</strong>, provisional credit issued while the merchant <strong>represents</strong> evidence.</p>
+</section>
+<section id="home-improvement">
+  <div class="sechead"><span class="secnum">10</span><h2>The home-improvement vertical</h2></div>
+  <p class="secsub">Financing sold at the kitchen table, funded in stages, and released by a signature — the vocabulary of our biggest vertical.</p>
+
+  <p>Home improvement (HI) is different from retail in three ways that reshape the whole financing flow: the purchase is <strong>goods plus labor</strong> (part of the ticket isn't a leaseable, returnable thing), the work <strong>spans weeks or months</strong> (money can't all move on day one), and the sale happens <strong>in the home</strong> (a technician with a tablet, not a checkout page). Everything in this section exists because of those three facts.</p>
+
+  <div class="term">
+    <div class="term-head"><h3>The cast</h3><span class="chip cat">roles</span></div>
+    <p>The <strong>homeowner</strong> is the applicant/borrower. The <strong>contractor</strong> — also called a <strong>dealer</strong>, <strong>installer</strong>, or (in franchise home-services networks) a <strong>technician</strong> — is the merchant: they sell the job, offer the financing, and get funded. Larger contractors add a <strong>sales rep or finance manager</strong> who runs the financing conversation. The contractor works out of a <strong>contractor portal</strong> (dealer portal / merchant portal): one place to start applications (or send an apply link to the customer's phone), see plans and promos, request funding and stage payments, and process refunds and change orders. Different lender programs use different words for the same role — knowing that <em>dealer = contractor = technician's company</em> saves a lot of confusion in tickets.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Project lifecycle &amp; staged funding</h3><span class="chip cat">money over time</span></div>
+    <p>The flow: inspection → <strong>quote/estimate</strong> → financing offered on the spot → approval with a <strong>purchase window</strong> (§04 — the loan stays open for new charges while the project runs) → work begins with <strong>staged funding</strong> → <strong>change orders</strong> adjust the amount when scope shifts → <strong>certificate of completion</strong> → final disbursement.</p>
+    <p><strong>Staged funding (milestone disbursement)</strong> releases money in slices tied to project progress: an early draw gives the contractor procurement funds for materials, later stage payments follow the work, and the final slice waits for the homeowner's sign-off. It protects both sides — the contractor isn't fronting material costs, and the homeowner isn't paying in full for unfinished work. For the platform, every stage payment is a partial capture (§06) with its own reconciliation footprint (§07).</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Certificate of completion</h3><span class="chip warncat">disbursement control</span></div>
+    <p>A legally binding sign-off — usually e-signed (§05) — in which the homeowner confirms the work is done as agreed. It is the trigger that authorizes the platform/lender to release final funds to the contractor: a safety valve for the lender, proof-of-work for the contractor.</p>
+    <p><em>Why fintech programs insist on it:</em> it prevents paying contractors for incomplete or abandoned jobs, it captures explicit customer authorization before money moves, and it protects the funding bank partners from disbursing against faulty or unfinished work. Support pattern to know: "the job is done but the contractor hasn't been paid" almost always means a completion certificate is unsigned or stuck.</p>
+  </div>
+
+  <div class="callout law">
+    <span class="label">In-home selling protection</span>
+    <p>Because HI financing is often sold door-to-door or in the home, the FTC's cooling-off rule for home-solicitation sales applies: the consumer generally has a <strong>3-day right of rescission</strong> to cancel. Flows must surface the cancellation right and hold irreversible money movement until the window passes — one more reason funding is staged rather than instant.</p>
+  </div>
+
+  <p>Adjacent vertical worth one line: <strong>solar financing</strong> (the <code>solar</code> flag on plans) — same contractor-sold, staged-funding model, but with its own plan shapes built around the federal solar tax credit and system-activation milestones.</p>
+</section>
+
+<section id="agentic-commerce">
+  <div class="sechead"><span class="secnum">11</span><h2>Agentic commerce</h2></div>
+  <p class="secsub">Where checkout is heading: AI agents that discover, compare, and buy on the consumer's behalf — and what that means for embedded financing.</p>
+
+  <p><strong>Agentic commerce</strong> is the emerging model where an AI agent (a ChatGPT-style assistant, a shopping copilot) doesn't just recommend a product — it completes the purchase for the consumer. Discovery, comparison, and checkout move from the merchant's website into the agent conversation. The industry projection making the rounds: a third of enterprises adopting agent-based AI by 2028, from under 1% a couple of years ago.</p>
+
+  <div class="term">
+    <div class="term-head"><h3>ACP — Agentic Commerce Protocol</h3><span class="chip cat">emerging standard</span></div>
+    <p>An open-source standard (Apache 2.0, initiated by Stripe and OpenAI) for letting agents transact with businesses. The moving parts: merchants expose <strong>agent-ready product feeds and a checkout API</strong> (REST and MCP); the buyer's payment credential is passed to the agent as a <strong>delegated token</strong> so the agent never sees the underlying card; and the merchant stays <strong>merchant of record</strong> — it keeps control of pricing, products, fulfillment, and the customer relationship. Fraud systems learn to distinguish legitimate agent-initiated transactions from bot abuse. Note the rhyme with our world: delegated payment tokens are the same pattern as tokenized PANs and JIT-funded VCCs (§05) — a credential scoped to one use, one amount, one counterparty.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>What an agent needs from us</h3><span class="chip cat">agent anatomy</span></div>
+    <p>The standard anatomy of a commerce agent: a <strong>role</strong> (what it's for), <strong>data</strong> (structured, machine-readable product and pricing information), <strong>actions</strong> (APIs it can call), <strong>guardrails</strong> (what it must not do), and <strong>channels</strong> (where it lives). The recurring lesson from every vendor: <em>agents are only as good as the structured data behind them</em> — an agent can't quote financing from a marketing banner.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head"><h3>Implications for embedded financing</h3><span class="chip cat">why we care</span></div>
+    <p>If checkout happens inside an agent, financing must be a <strong>machine-readable payment method</strong>: plans, estimators, and prequalification exposed as APIs an agent can call — not just widgets a human sees. Three consequences to keep in mind:</p>
+    <ul>
+      <li><strong>Offers as data:</strong> "as low as $58/mo" must be computable and quotable by an agent, with the Reg Z trigger-term disclosures (§04) delivered inside the agent conversation — advertising compliance follows the offer wherever it's rendered.</li>
+      <li><strong>The human checkpoints stay human:</strong> a credit application is made by the <em>consumer</em>, not their agent. Consent to a credit pull, KYC, and the e-signature on the credit agreement (§05) remain moments where the flow must reach the actual person — OTP and e-sign become the bridges between an agent-driven journey and a legally valid loan.</li>
+      <li><strong>The rails are ready:</strong> agent payments built on delegated, single-use, amount-locked tokens are structurally what VCC/JIT funding already does — a multi-lender platform that can mint a scoped credential for one purchase is well positioned to plug financing into agent checkout.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="cheatsheets">
+  <div class="sechead"><span class="secnum">12</span><h2>Cheat sheets</h2></div>
+  <p class="secsub">The four comparisons everyone eventually gets wrong once. Bookmark this section.</p>
+
+  <h3>Soft pull vs hard pull</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th></th><th>Soft pull</th><th>Hard pull</th></tr></thead>
+      <tbody>
+        <tr><td>Score impact</td><td>None</td><td>Small, temporary</td></tr>
+        <tr><td>Visible to other lenders</td><td>No</td><td>Yes (on the file)</td></tr>
+        <tr><td>When we use it</td><td>Prequalification, account review</td><td>Offer acceptance / booking</td></tr>
+        <tr><td>Consent</td><td>Consumer-initiated prequal</td><td>Explicit, per application</td></tr>
+        <tr><td>Waterfall behavior</td><td>Can sweep every lender</td><td>Once, with the chosen lender</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Void vs refund vs chargeback vs reversal</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Action</th><th>When</th><th>Who starts it</th><th>Statement impact</th><th>Money movement</th></tr></thead>
+      <tbody>
+        <tr><td>Void / auth reversal</td><td>Before settlement</td><td>Merchant / platform</td><td>None — hold released</td><td>None</td></tr>
+        <tr><td>Refund</td><td>After settlement</td><td>Merchant</td><td>Credit appears</td><td>Back to account → lender</td></tr>
+        <tr><td>Chargeback / dispute</td><td>After settlement (≤ ~60 days)</td><td>Consumer</td><td>Provisional credit</td><td>Contested; representment decides</td></tr>
+        <tr><td>Reversal (generic)</td><td>Depends on object</td><td>Varies</td><td>Varies</td><td>Ask <em>which</em> object is reversed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Deferred interest vs 0% equal pay</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th></th><th>Deferred interest</th><th>0% equal pay</th></tr></thead>
+      <tbody>
+        <tr><td>Marketing phrase</td><td>"No interest <em>if paid in full</em> in 12 months"</td><td>"12 months promotional financing"</td></tr>
+        <tr><td>Interest accrues?</td><td>Yes, from day one (waived if paid off in time)</td><td>No, never</td></tr>
+        <tr><td>Miss the deadline</td><td>All accrued interest charged retroactively</td><td>Nothing retroactive</td></tr>
+        <tr><td>Payment shape</td><td>Revolving minimums (usually won't pay it off alone)</td><td>Fixed equal payments sized to finish on time</td></tr>
+        <tr><td>Who funds the promo</td><td>Consumer risk-bears it</td><td>Merchant subsidy / buy-down</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Product matrix</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Product</th><th>Open/closed end</th><th>Secured?</th><th>Instant at POS?</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>PLCC</td><td>Open (revolving)</td><td>No</td><td>Yes</td><td>Store card, repeat purchases, promo plans</td></tr>
+        <tr><td>DLOC</td><td>Open (revolving)</td><td>No</td><td>Yes</td><td>Digital-only store credit at checkout</td></tr>
+        <tr><td>Installment / project loan</td><td>Closed</td><td>No</td><td>Yes</td><td>One big ticket: HVAC, roof, furniture</td></tr>
+        <tr><td>BNPL / pay-in-4</td><td>Closed (short)</td><td>No</td><td>Yes</td><td>Small tickets, split pay</td></tr>
+        <tr><td>Lease-to-own</td><td>Lease (not credit)</td><td>Goods-backed</td><td>Yes</td><td>No-credit / deep-subprime, leaseable goods</td></tr>
+        <tr><td>HELOC</td><td>Open (revolving)</td><td>Yes — home</td><td>No (weeks)</td><td>Large projects, lowest rates</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="glossary">
+  <div class="sechead"><span class="secnum">13</span><h2>Glossary A–Z</h2></div>
+  <p class="secsub">One-breath definitions for quick lookup. Deeper context lives in the numbered sections.</p>
+  <div class="glossary">
+    <dl><dt>ACH</dt><dd>US bank-to-bank transfer network; the non-card rail for lender→merchant funding.</dd></dl>
+    <dl><dt>ACP</dt><dd>Agentic Commerce Protocol — open standard for AI agents transacting with merchants via feeds, checkout APIs, and delegated tokens.</dd></dl>
+    <dl><dt>Acquirer</dt><dd>The merchant-side bank/processor that accepts card transactions and receives settlement from the network.</dd></dl>
+    <dl><dt>Adverse action</dt><dd>Legally required notice after a decline or counter-offer: reasons, bureau, score.</dd></dl>
+    <dl><dt>Agentic commerce</dt><dd>AI agents discovering, comparing, and completing purchases on the consumer's behalf.</dd></dl>
+    <dl><dt>Amortization</dt><dd>The payment schedule that retires principal + interest over a loan's term.</dd></dl>
+    <dl><dt>AOV</dt><dd>Average order value — financing's headline merchant metric, alongside conversion.</dd></dl>
+    <dl><dt>Application</dt><dd>A request for credit and its decisioning journey. Not an account.</dd></dl>
+    <dl><dt>Account</dt><dd>The funded credit relationship booked after acceptance; where transactions live.</dd></dl>
+    <dl><dt>Apply flow</dt><dd>Apply-only: consumer applies first, then uses the approved amount in checkout later.</dd></dl>
+    <dl><dt>APR</dt><dd>Annual percentage rate — the standardized yearly cost of credit under Reg Z.</dd></dl>
+    <dl><dt>Authorization</dt><dd>A hold against available credit; no money moves until capture.</dd></dl>
+    <dl><dt>Authorized user</dt><dd>Can spend on an account without being liable for it.</dd></dl>
+    <dl><dt>Balloon payment</dt><dd>A large lump-sum payment due at the end of a loan/HELOC instead of gradual amortization.</dd></dl>
+    <dl><dt>BIN / IIN</dt><dd>First 6–8 digits of a card PAN, identifying issuer and program.</dd></dl>
+    <dl><dt>BNPL</dt><dd>Buy now, pay later — typically pay-in-4 over ~6 weeks, interest-free.</dd></dl>
+    <dl><dt>Booking / origination</dt><dd>The lender creating the account after acceptance.</dd></dl>
+    <dl><dt>Breaks</dt><dd>Reconciliation exceptions — records that won't match across ledgers.</dd></dl>
+    <dl><dt>Bureau</dt><dd>Experian, Equifax, or TransUnion — the national credit reporting agencies.</dd></dl>
+    <dl><dt>Buy-down / subsidy</dt><dd>Merchant fee that funds a promotional rate for the consumer.</dd></dl>
+    <dl><dt>Capture</dt><dd>Turning an authorization (or part of it) into a settled charge.</dd></dl>
+    <dl><dt>CARD Act</dt><dd>Card-specific law: payment allocation, ability-to-pay, penalty rules.</dd></dl>
+    <dl><dt>Card network</dt><dd>Visa, Mastercard, Amex, Discover — the rails routing card auth/settlement and setting the rules.</dd></dl>
+    <dl><dt>Cash-out refinance</dt><dd>New, bigger first mortgage that pays off the old one; the equity difference is paid out as cash. HELOC's main rival.</dd></dl>
+    <dl><dt>Certificate of completion</dt><dd>Homeowner's e-signed confirmation that work is done; triggers the final disbursement to the contractor.</dd></dl>
+    <dl><dt>Change order</dt><dd>An agreed adjustment to a project's scope and price mid-job; changes the amount to fund.</dd></dl>
+    <dl><dt>Charge</dt><dd>Internal name for an order placed through the platform; carries the postsale payment status.</dd></dl>
+    <dl><dt>Chargeback</dt><dd>A consumer dispute of a settled charge; provisional credit, representment, resolution.</dd></dl>
+    <dl><dt>Charge-off</dt><dd>Lender writes off a severely delinquent balance; collection may continue.</dd></dl>
+    <dl><dt>Checkout flow</dt><dd>Apply-and-buy inside the merchant checkout, in one session.</dd></dl>
+    <dl><dt>CLTV</dt><dd>Combined loan-to-value: all liens (existing + proposed) ÷ appraised value; HELOC lenders cap ~85%.</dd></dl>
+    <dl><dt>Co-applicant</dt><dd>Joint applicant — both incomes count, both fully liable.</dd></dl>
+    <dl><dt>Co-branded card</dt><dd>Merchant-branded card on an open network (Visa/MC); works anywhere.</dd></dl>
+    <dl><dt>Community property states</dt><dd>Nine states where spouses share marital assets/debts — lenders may collect spouse info there.</dd></dl>
+    <dl><dt>Contractor / dealer</dt><dd>The merchant in home improvement — also installer or technician; sells the job and offers the financing.</dd></dl>
+    <dl><dt>Contractor portal</dt><dd>The dealer-facing surface: applications, plans, stage payments, refunds, change orders.</dd></dl>
+    <dl><dt>Cosigner</dt><dd>Liable for the debt without necessarily using the account.</dd></dl>
+    <dl><dt>Counter-offer</dt><dd>Approval at different terms than requested; triggers adverse-action rules.</dd></dl>
+    <dl><dt>Credit freeze</dt><dd>Consumer-initiated bureau block; new creditors can't read the file until thawed.</dd></dl>
+    <dl><dt>Credit limit</dt><dd>Maximum outstanding balance on a revolving account.</dd></dl>
+    <dl><dt>Credit lock</dt><dd>A bureau's proprietary freeze-like product; contractual, not statutory.</dd></dl>
+    <dl><dt>Creditor</dt><dd>The legal owner of the credit decision and obligations — the lender, not the platform.</dd></dl>
+    <dl><dt>Deferred interest</dt><dd>Interest accrues from day one, waived only if paid in full by promo end.</dd></dl>
+    <dl><dt>Delegated payment token</dt><dd>A scoped credential handed to an AI agent to pay without seeing the underlying card — the agent-world VCC.</dd></dl>
+    <dl><dt>Delinquency</dt><dd>Missed-payment status on an account; buckets by days past due.</dd></dl>
+    <dl><dt>DLOC</dt><dd>Digital line of credit — a revolving account issued instantly at checkout, no plastic.</dd></dl>
+    <dl><dt>Down payment</dt><dd>Upfront % of the purchase price paid at closing — the borrower's stake; bigger stake, better terms.</dd></dl>
+    <dl><dt>Draw period</dt><dd>The years a HELOC can be drawn against before repayment begins.</dd></dl>
+    <dl><dt>DTI</dt><dd>Debt-to-income ratio; a core affordability input to decisioning.</dd></dl>
+    <dl><dt>Early purchase option</dt><dd>LTO buyout in the first ~90 days for a small % over cash price (cash price in California).</dd></dl>
+    <dl><dt>ECOA / Reg B</dt><dd>Fair-lending law: non-discrimination, joint-intent, adverse-action timing.</dd></dl>
+    <dl><dt>End of draw</dt><dd>When a HELOC's draw period ends: payments jump to principal+interest (or a balloon comes due).</dd></dl>
+    <dl><dt>E-SIGN</dt><dd>Federal law making electronic signatures and disclosures valid.</dd></dl>
+    <dl><dt>Equal pay</dt><dd>0% APR promo split into equal monthly payments; no retroactive interest.</dd></dl>
+    <dl><dt>FCBA</dt><dd>Fair Credit Billing Act — billing-error dispute rights on credit accounts.</dd></dl>
+    <dl><dt>FCRA</dt><dd>Fair Credit Reporting Act — governs pulls, furnishing, adverse action.</dd></dl>
+    <dl><dt>FICO</dt><dd>The dominant US credit score family (300–850).</dd></dl>
+    <dl><dt>First look</dt><dd>The lender who sees an application before anyone else in the waterfall.</dd></dl>
+    <dl><dt>FP / EPNI / WPDI</dt><dd>Promo-type codes from lender config: flexible payments / equal payments no interest / deferred interest with payments.</dd></dl>
+    <dl><dt>Fraud alert</dt><dd>Bureau flag requiring extra identity verification; file stays readable.</dd></dl>
+    <dl><dt>GLBA</dt><dd>Privacy law covering nonpublic personal information (NPI).</dd></dl>
+    <dl><dt>Hard pull</dt><dd>Recorded credit inquiry with small score impact; needs explicit initiation.</dd></dl>
+    <dl><dt>HELOC</dt><dd>Home equity line of credit — revolving, secured by the home.</dd></dl>
+    <dl><dt>Idempotency</dt><dd>Retry-safety: the same request key can never double-book or double-charge.</dd></dl>
+    <dl><dt>Index + margin</dt><dd>How variable rates are built: a public benchmark (e.g., Prime) plus a fixed lender markup.</dd></dl>
+    <dl><dt>Interchange</dt><dd>Network-set fee the acquirer pays the issuer per card transaction; funds issuing programs.</dd></dl>
+    <dl><dt>Issuer</dt><dd>The institution that issued the card and owns the cardholder account; approves every auth.</dd></dl>
+    <dl><dt>Issuer-processor</dt><dd>Tech layer (e.g., Marqeta) issuing cards and processing auths for an issuing program.</dd></dl>
+    <dl><dt>JIT funding</dt><dd>Just-in-time: a VCC authorization is funded in real time, per transaction.</dd></dl>
+    <dl><dt>KYC / CIP</dt><dd>Identity verification required before opening an account (BSA/PATRIOT).</dd></dl>
+    <dl><dt>Lease-to-own</dt><dd>Lease with ownership option — not credit, no APR, deep-subprime rung.</dd></dl>
+    <dl><dt>Loan stacking</dt><dd>Multiple loans from different lenders in a short window, before bureaus catch up — over-borrowing or fraud. Not the waterfall.</dd></dl>
+    <dl><dt>LTV</dt><dd>Loan-to-value: loan ÷ property value; above 80% usually triggers PMI.</dd></dl>
+    <dl><dt>Luhn</dt><dd>The checksum algorithm behind a card number's final digit.</dd></dl>
+    <dl><dt>Managed mode</dt><dd>Platform-managed: platform UI collects consumer data. Merchant-managed: merchant UI collects it and forwards to the platform.</dd></dl>
+    <dl><dt>Masking</dt><dd>Displaying only part of a sensitive number (e.g., last 4).</dd></dl>
+    <dl><dt>MCC</dt><dd>Merchant category code — used to lock a VCC to a merchant type.</dd></dl>
+    <dl><dt>MDR / merchant fee</dt><dd>What the merchant pays for financing, especially promos.</dd></dl>
+    <dl><dt>Merchant of record</dt><dd>The party legally selling the goods — keeps pricing, fulfillment, and the customer relationship (stays with the merchant in agent checkout).</dd></dl>
+    <dl><dt>MLA</dt><dd>Military Lending Act — rate caps and checks for covered borrowers.</dd></dl>
+    <dl><dt>Net settlement</dt><dd>Funding with fees already withheld (vs gross + separate invoice).</dd></dl>
+    <dl><dt>Non-leasable items</dt><dd>Goods LTO lenders won't lease (non-durables, &lt;$20 items, warranties, services, fees); may decline the cart or be charged upfront.</dd></dl>
+    <dl><dt>NPI</dt><dd>Nonpublic personal information — GLBA-protected consumer financial data.</dd></dl>
+    <dl><dt>OFAC</dt><dd>Sanctions screening — mandatory before extending credit.</dd></dl>
+    <dl><dt>Offer</dt><dd>Lender's response to an application: product, amount, rate plans.</dd></dl>
+    <dl><dt>Open-to-buy</dt><dd>Available credit on a revolving account: limit − balance − holds.</dd></dl>
+    <dl><dt>OTP</dt><dd>One-time passcode (text/email/call) verifying a returning consumer before using an existing account.</dd></dl>
+    <dl><dt>PAN</dt><dd>Primary account number — the card number; PCI-scoped data.</dd></dl>
+    <dl><dt>Partial settle</dt><dd>The lender funds only part of the authorized charge (e.g., partial shipment).</dd></dl>
+    <dl><dt>Payment estimator</dt><dd>Tool converting ticket + terms into an estimated monthly payment.</dd></dl>
+    <dl><dt>Payment factor</dt><dd>Monthly payment as % of principal, precomputed per plan (1.11 → $11.10/mo per $1,000).</dd></dl>
+    <dl><dt>PCI-DSS</dt><dd>Industry security standard for handling card data.</dd></dl>
+    <dl><dt>PII</dt><dd>Personally identifiable information: name, SSN, phone, email, billing/shipping address.</dd></dl>
+    <dl><dt>Plan code</dt><dd>Lender identifier for a specific rate plan configuration.</dd></dl>
+    <dl><dt>PLCC</dt><dd>Private label credit card — store-only revolving card, bank-issued.</dd></dl>
+    <dl><dt>PMI</dt><dd>Private mortgage insurance — required when LTV exceeds ~80%; protects the lender, paid by the borrower.</dd></dl>
+    <dl><dt>Prequalification</dt><dd>Soft-pull, non-binding indication of likely approval.</dd></dl>
+    <dl><dt>Preapproval</dt><dd>Firmer than prequal — often a firm offer subject to verification.</dd></dl>
+    <dl><dt>Promotional modal</dt><dd>Screen opened from the widget with full promo details; entry into the apply flow.</dd></dl>
+    <dl><dt>Promotional widget</dt><dd>On-site component showing financing messaging before application; modes: price-focused, brand-focused, multi-promo, no-promo.</dd></dl>
+    <dl><dt>Purchase window</dt><dd>Months after approval during which new purchases can be charged to the loan (multi-draw installment).</dd></dl>
+    <dl><dt>Reauthorization</dt><dd>Re-placing a hold after the original authorization expired.</dd></dl>
+    <dl><dt>Reconciliation</dt><dd>Matching every transaction and dollar across platform, lender, merchant, processor.</dd></dl>
+    <dl><dt>Refinance</dt><dd>Replace an existing loan with a new one — rate-and-term (better terms) or cash-out (pull equity).</dd></dl>
+    <dl><dt>Refund</dt><dd>Post-settlement credit back to the account, full or partial.</dd></dl>
+    <dl><dt>Reg Z / TILA</dt><dd>Truth in Lending — disclosures, promo rules, advertising trigger terms.</dd></dl>
+    <dl><dt>Representment</dt><dd>Merchant's evidence submission contesting a chargeback.</dd></dl>
+    <dl><dt>Returning consumer</dt><dd>Holder of an existing account, found by PII lookup and verified via OTP — no reapplication needed.</dd></dl>
+    <dl><dt>Reversal</dt><dd>Umbrella term — auth, settlement, or funding reversal; always ask which.</dd></dl>
+    <dl><dt>Right of rescission</dt><dd>Cooling-off right to cancel — 3 days on home-solicitation sales; gates irreversible funding.</dd></dl>
+    <dl><dt>RLOC</dt><dd>Revolving line of credit; billed as flexible payments or equal payments, no prepayment penalties.</dd></dl>
+    <dl><dt>Sales app</dt><dd>In-store rep surface: build the cart, start an application, or send the apply link to the customer's device.</dd></dl>
+    <dl><dt>Second look</dt><dd>A lender that receives applications only after an upstream decline.</dd></dl>
+    <dl><dt>Settlement</dt><dd>The capture step where money actually moves; also the files reporting it.</dd></dl>
+    <dl><dt>Soft pull</dt><dd>Score-neutral inquiry, invisible to other lenders; powers prequal.</dd></dl>
+    <dl><dt>Split shipment</dt><dd>One order, multiple captures — settle at shipment, not order.</dd></dl>
+    <dl><dt>Staged funding</dt><dd>Milestone disbursement: money released in slices as project work progresses; final slice waits for completion sign-off.</dd></dl>
+    <dl><dt>Thin file</dt><dd>Too little credit history to score; no-hit means none found at all.</dd></dl>
+    <dl><dt>Tokenization</dt><dd>Replacing a PAN with a reference token to shrink PCI scope.</dd></dl>
+    <dl><dt>Trigger terms</dt><dd>Reg Z advertising phrases that mandate full disclosures.</dd></dl>
+    <dl><dt>UDAAP</dt><dd>Ban on unfair, deceptive, or abusive acts and practices.</dd></dl>
+    <dl><dt>VCC</dt><dd>Virtual credit card — single-use, lender-funded card paying the merchant on card rails.</dd></dl>
+    <dl><dt>VCN</dt><dd>Virtual card number — the VCC's digital-only PAN (number + expiry + CVV); PCI-scoped.</dd></dl>
+    <dl><dt>Void</dt><dd>Cancel an authorization before settlement; nothing hits the statement. Not supported by every lender.</dd></dl>
+    <dl><dt>Waterfall</dt><dd>The ordered lender cascade: prime → near-prime → second look → LTO.</dd></dl>
+    <dl><dt>White label</dt><dd>Financing program under the merchant's own brand, run by the platform underneath.</dd></dl>
+  </div>
+
+  <footer class="pagefoot">
+    <p>Internal training aid for new team members. Simplified for onboarding — always verify program-specific behavior against the relevant lender partner's documentation, and treat nothing here as legal advice. Regulations summarized (FCRA, ECOA, TILA/Reg Z, GLBA, PCI-DSS, and others) are described at the level needed to understand the platform, not to implement compliance.</p>
+  </footer>
+</section>
+</main>
+</div>
+
+<script>
+  (function () {
+    try {
+      var links = document.querySelectorAll('nav.toc a');
+      var map = {};
+      links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            links.forEach(function (a) { a.classList.remove('active'); });
+            var a = map[e.target.id];
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-15% 0px -70% 0px' });
+      document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
+    } catch (err) { /* nav highlight is a convenience only */ }
+  })();
+</script>
+</body>
+</html>
